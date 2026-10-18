@@ -128,6 +128,7 @@ a {
     font-size: 1.25rem;
     font-weight: 800;
     letter-spacing: -0.01em;
+    white-space: nowrap;
   }
   .nav-links {
     display: flex;
@@ -199,11 +200,14 @@ a {
     color: var(--green);
   }
   @media (max-width: 640px) {
-    .nav-links a:not(.btn) {
+    .nav-links {
       display: none;
     }
     .nav-toggle {
       display: flex;
+    }
+    .logo-text {
+      font-size: 1.1rem;
     }
   }
   .hero {

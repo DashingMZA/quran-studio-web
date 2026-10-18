@@ -40,3 +40,7 @@
   (brand 1/2 + links 1/4 + links 1/4, stacks on mobile); new "Open Web App"
   button on /download → APP_URL (https://app.quranstudio.cyou) from
   src/config/seo.ts (owner will host web app on app subdomain).
+- **2026-10-18:** Mobile nav fix (owner screenshot): GitHub button no longer
+  shows outside the menu on small screens (whole .nav-links hidden ≤640px,
+  GitHub stays in hamburger dropdown); logo white-space:nowrap + smaller on
+  mobile so it doesn't wrap to two lines.
