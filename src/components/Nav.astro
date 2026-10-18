@@ -23,14 +23,13 @@ import { APP_URL, GITHUB_REPO } from "../config/site";
       <a href="/how-it-works">How It Works</a>
       <a href="/download">Download</a>
       <a href="/faq">FAQ</a>
-      <a href={APP_URL} target="_blank" rel="noopener">Web App</a>
       <a
-        href={GITHUB_REPO}
+        href={APP_URL}
         target="_blank"
         rel="noopener"
         class="btn btn-ghost btn-sm"
       >
-        GitHub
+        Web App
       </a>
     </nav>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
@@ -45,13 +44,7 @@ import { APP_URL, GITHUB_REPO } from "../config/site";
     <a href="/download">Download</a>
     <a href="/faq">FAQ</a>
     <a href={APP_URL} target="_blank" rel="noopener">🌐 Web App</a>
-    <a
-      href={GITHUB_REPO}
-      target="_blank"
-      rel="noopener"
-    >
-      GitHub
-    </a>
+    <a href={GITHUB_REPO} target="_blank" rel="noopener"> GitHub </a>
   </nav>
 </header>
 
@@ -70,6 +63,6 @@ import { APP_URL, GITHUB_REPO } from "../config/site";
       toggle?.classList.remove("active");
       toggle?.setAttribute("aria-expanded", "false");
       menu.setAttribute("aria-hidden", "true");
-    })
+    }),
   );
 </script>
