@@ -87,6 +87,9 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
     {/* RSS feed for readers & AI agents */}
     <link rel="alternate" type="application/rss+xml" title={`${SITE_URL} — RSS`} href={`${SITE_URL}/rss.xml`} />
 
+    {/* llms.txt for AI agents & crawlers */}
+    <link rel="alternate" type="text/plain" title={`${SITE_NAME} — LLM info`} href={`${SITE_URL}/llms.txt`} />
+
     {/* Google Analytics 4 loads only after cookie consent (see CookieConsent.astro).
         Paste your Measurement ID as GA_ID in src/config/site.ts to enable. */}
 
