@@ -1,0 +1,49 @@
+---
+const shots = [
+  {
+    src: "/screenshots/app-full.png",
+    alt: "Quran Studio full editor",
+    title: "Full Editor",
+    text: "Selection, preview and styling — everything in one window.",
+  },
+  {
+    src: "/screenshots/app-preview.png",
+    alt: "Video preview with verses",
+    title: "Live Preview",
+    text: "See every verse beautifully typeset as you style it.",
+  },
+  {
+    src: "/screenshots/app-selection.png",
+    alt: "Surah and reciter selection",
+    title: "Pick Verses & Reciter",
+    text: "Any surah, any verse range, famous reciters.",
+  },
+  {
+    src: "/screenshots/app-styling.png",
+    alt: "Styling panel",
+    title: "Style Everything",
+    text: "Typography, colors, positions — full control.",
+  },
+];
+---
+
+<section class="section screenshots">
+  <div class="container">
+    <p class="kicker">Take a tour</p>
+    <h2 class="section-title">See the app in action</h2>
+    <p class="section-sub">
+      A look inside Quran Studio — from verse selection to the final video.
+    </p>
+    <div class="shot-grid">
+      {shots.map((s, i) => (
+        <figure class={"shot" + (i === 0 ? " shot-wide" : "")}>
+          <img src={s.src} alt={s.alt} loading="lazy" />
+          <figcaption>
+            <strong>{s.title}</strong>
+            <span>{s.text}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
