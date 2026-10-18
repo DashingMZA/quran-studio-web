@@ -1,4 +1,4 @@
-import { SITE_URL, SITE_NAME, AUTHOR_NAME } from "../config/site";
+import { SITE_URL, SITE_NAME, AUTHOR_NAME, APP_URL } from "../config/site";
 
 const pages = [
   { path: "/", title: "Home", description: "Create beautiful Quran recitation videos — free, open source." },
@@ -14,6 +14,13 @@ const pages = [
   { path: "/sitemap", title: "Sitemap", description: "Browse every page on the " + SITE_NAME + " website." },
 ];
 
+const appItem = `    <item>
+      <title>Web App — ${SITE_NAME}</title>
+      <link>${APP_URL}</link>
+      <guid>${APP_URL}</guid>
+      <description>Use ${SITE_NAME} directly in your browser — no install needed.</description>
+    </item>`;
+
 const items = pages
   .map(
     (p) => `    <item>
@@ -23,7 +30,7 @@ const items = pages
       <description>${p.description}</description>
     </item>`
   )
-  .join("\n");
+  .join("\n") + "\n" + appItem;
 
 export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
