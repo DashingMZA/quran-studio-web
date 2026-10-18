@@ -1,1 +1,9 @@
-{"$schema":"./node_modules/wrangler/config-schema.json","assets":{"directory":"./dist","not_found_handling":"single-page-application"},"compatibility_date":"2026-10-17","name":"quran-studio-web"}
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "quran-studio-web",
+  "compatibility_date": "2026-10-17",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
