@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { seo } from "../lib/seo";
+---
+
+<Layout
+  {...seo({
+    title: "Contact — Quran Studio",
+    description:
+      "Get in touch about Quran Studio: bug reports, feature requests and questions via GitHub.",
+    path: "/contact",
+  })}
+>
+  <Nav />
+  <main>
+    <section class="section">
+      <div class="container prose">
+        <h1 class="section-title">Contact</h1>
+        <p class="section-sub">Questions, bugs, or ideas — here's where to reach us.</p>
+        <div class="prose-body">
+          <h2>🐛 Bug Reports &amp; Feature Requests</h2>
+          <p>
+            The fastest way is GitHub Issues on the
+            <a href="https://github.com/DashingMZA/quran-studio" target="_blank" rel="noopener">quran-studio repository</a>.
+            Please include your app version, Windows version, and steps to reproduce.
+          </p>
+          <h2>💬 Questions</h2>
+          <p>
+            Check the <a href="/faq">FAQ</a> first — most common questions are
+            answered there.
+          </p>
+          <h2>🤝 Contributing</h2>
+          <p>
+            Quran Studio is open source (GPL-3.0). Pull requests are welcome —
+            see the repository README for the development setup.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

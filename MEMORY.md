@@ -17,3 +17,8 @@
   Comparison table, FirstVideo (4-step timeline), Download (Windows, SmartScreen note),
   Support (Ko-fi / Buy Me a Coffee / Gumroad), Footer. Brand: Quran green + Studio white
   on dark. Deploy: vercel.json + wrangler.toml/jsonc (static assets, SPA fallback).
+- **2026-10-17:** Converted to multi-page site (owner: wanted nicheminer.net-style
+  multiple pages, not one page). New: /download, /features, /how-it-works, /faq,
+  /about, /contact, /privacy-policy, /terms-of-use. New src/lib/seo.ts helper
+  builds the full SEO prop set for Layout. Nav/Footer now link pages. Owner's
+  rework (aa318d0, 2c75dba) synced first; only new/edited-by-agent files pushed.

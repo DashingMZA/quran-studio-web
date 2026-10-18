@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Features from "../components/Features.astro";
+import Footer from "../components/Footer.astro";
+import { seo } from "../lib/seo";
+---
+
+<Layout
+  {...seo({
+    title: "Features — Quran Studio",
+    description:
+      "Everything Quran Studio can do: surah picker, famous reciters, auto-synced verses, beautiful typography, backgrounds, Urdu translation and HD MP4 export.",
+    path: "/features",
+  })}
+>
+  <Nav />
+  <main>
+    <Features />
+    <section class="section">
+      <div class="container" style="text-align: center">
+        <h2 class="section-title">Ready to try it?</h2>
+        <p class="section-sub">Free forever. No account, no watermark.</p>
+        <a href="/download" class="btn btn-primary">Download Quran Studio</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

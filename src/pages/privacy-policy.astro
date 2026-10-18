@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { seo } from "../lib/seo";
+---
+
+<Layout
+  {...seo({
+    title: "Privacy Policy — Quran Studio",
+    description:
+      "Privacy policy for Quran Studio and this website: what data is (and isn't) collected.",
+    path: "/privacy-policy",
+  })}
+>
+  <Nav />
+  <main>
+    <section class="section">
+      <div class="container prose">
+        <h1 class="section-title">Privacy Policy</h1>
+        <p class="section-sub">Last updated: October 2026</p>
+        <div class="prose-body">
+          <h2>The Short Version</h2>
+          <p>
+            Quran Studio collects <strong>no personal data</strong>. The app
+            runs locally on your machine, and this website uses no analytics,
+            no cookies, and no trackers.
+          </p>
+          <h2>Quran Studio App</h2>
+          <ul>
+            <li>No accounts, no sign-ups, no telemetry.</li>
+            <li>Your projects and settings stay on your device.</li>
+            <li>
+              The app fetches public content (Quran text, reciter audio,
+              backgrounds) from third-party APIs — those services see standard
+              web requests, nothing tied to your identity.
+            </li>
+            <li>The auto-updater checks GitHub Releases for new versions.</li>
+          </ul>
+          <h2>This Website</h2>
+          <ul>
+            <li>Static pages — no server-side processing of visitor data.</li>
+            <li>No analytics scripts, no advertising, no cookies.</li>
+            <li>
+              Outbound links (GitHub, Ko-fi, etc.) are governed by those
+              sites' own privacy policies.
+            </li>
+          </ul>
+          <h2>Contact</h2>
+          <p>
+            Privacy questions: open an issue on the
+            <a href="https://github.com/DashingMZA/quran-studio" target="_blank" rel="noopener">GitHub repository</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Download from "../components/Download.astro";
+import Footer from "../components/Footer.astro";
+import { seo } from "../lib/seo";
+---
+
+<Layout
+  {...seo({
+    title: "Download Quran Studio for Windows — Free",
+    description:
+      "Download Quran Studio v1.0.0 for Windows. Free, open-source Quran recitation video editor. No account needed.",
+    path: "/download",
+  })}
+>
+  <Nav />
+  <main>
+    <Download />
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">System Requirements</h2>
+        <div class="req-grid">
+          <div class="req-card">
+            <h3>🖥️ OS</h3>
+            <p>Windows 10 / 11 (64-bit)</p>
+          </div>
+          <div class="req-card">
+            <h3>💾 Disk</h3>
+            <p>~200 MB free space</p>
+          </div>
+          <div class="req-card">
+            <h3>🌐 Internet</h3>
+            <p>Needed for reciter audio &amp; updates</p>
+          </div>
+        </div>
+        <h2 class="section-title" style="margin-top: 4rem">Other Ways to Get It</h2>
+        <p class="section-sub">
+          Prefer the browser? A web version is available too — no install needed.
+        </p>
+        <div class="alt-list">
+          <a
+            href="https://github.com/DashingMZA/quran-studio/releases"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-ghost"
+          >
+            All Releases on GitHub
+          </a>
+          <a
+            href="https://github.com/DashingMZA/quran-studio"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-ghost"
+          >
+            Source Code
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
