@@ -1,18 +1,37 @@
+---
+import {SITE_NAME, SUPPORT_KOFI, SUPPORT_COFFEE, SUPPORT_GUMROAD } from "../config/site";
+---
+
 <section id="support" class="section support">
   <div class="container">
     <h2 class="section-title">Support the Developer</h2>
     <p class="section-sub">
-      Quran Studio is free and open source. If it helps your dawah or content,
+      {SITE_NAME} is free and open source. If it helps your dawah or content,
       consider supporting its development ☕
     </p>
     <div class="support-btns">
-      <a href="https://ko-fi.com/dashingmza" target="_blank" rel="noopener" class="btn btn-ghost">
+      <a
+        href={SUPPORT_KOFI}
+        target="_blank"
+        rel="noopener"
+        class="btn btn-ghost"
+      >
         ☕ Ko-fi
       </a>
-      <a href="https://buymeacoffee.com/dashingmza" target="_blank" rel="noopener" class="btn btn-ghost">
+      <a
+        href={SUPPORT_COFFEE}
+        target="_blank"
+        rel="noopener"
+        class="btn btn-ghost"
+      >
         ☕ Buy Me a Coffee
       </a>
-      <a href="https://dashingmza.gumroad.com/coffee" target="_blank" rel="noopener" class="btn btn-ghost">
+      <a
+        href={SUPPORT_GUMROAD}
+        target="_blank"
+        rel="noopener"
+        class="btn btn-ghost"
+      >
         🛒 Gumroad
       </a>
     </div>

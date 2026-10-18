@@ -23,6 +23,11 @@ export const GITHUB_REPO = "https://github.com/DashingMZA/quran-studio";
 export const GITHUB_RELEASES = `${GITHUB_REPO}/releases`;
 export const GITHUB_LICENSE = `${GITHUB_REPO}/blob/master/LICENSE`;
 
+// ---------- Support / Donations ----------
+export const SUPPORT_KOFI = "https://ko-fi.com/dashingmza";
+export const SUPPORT_COFFEE = "https://buymeacoffee.com/dashingmza";
+export const SUPPORT_GUMROAD = "https://dashingmza.gumroad.com/coffee";
+
 // ---------- Social links (footer icons) ----------
 // Fill in your profile URLs; empty string = icon hidden.
 export const SOCIALS: { name: string; url: string; icon: string }[] = [
