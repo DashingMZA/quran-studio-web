@@ -85,7 +85,7 @@ export const DEFAULT_SEO = {
   oglocalealternate: "ur_PK",
   ogtype: "website",
   ogupdatedtime: "2026-10-17T00:00:00Z",
-  ogimage: "/quran-studio.png",
+  ogimage: "/screenshots/quran-studio.png",
   ogimagealt: "Quran Studio — Create Beautiful Quran Recitation Videos",
   ogimagetype: "image/png",
   ogimagewidth: "1920",
@@ -94,7 +94,7 @@ export const DEFAULT_SEO = {
   twittertitle: "Create and export professional Quran videos online",
   twitterdescription:
     "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
-  twitterimage: "/quran-studio.png",
+  twitterimage: "/screenshots/quran-studio.png",
   twitterimagealt: "Quran Studio — Create Beautiful Quran Recitation Videos",
 };
 
