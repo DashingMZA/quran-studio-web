@@ -1,0 +1,92 @@
+---
+const steps = [
+  {
+    n: "01",
+    title: "Pick your verses",
+    text: "Choose a surah and verse range. The Arabic text and Urdu translation appear instantly in the preview.",
+  },
+  {
+    n: "02",
+    title: "Choose a reciter",
+    text: "Select from famous reciters. Audio loads with word-perfect timings — no manual syncing needed.",
+  },
+  {
+    n: "03",
+    title: "Style it your way",
+    text: "Fonts, colors, highlights, backgrounds. Tweak everything live until it looks exactly right.",
+  },
+  {
+    n: "04",
+    title: "Export & share",
+    text: "Render an HD MP4 on your machine and upload straight to YouTube, TikTok or Instagram.",
+  },
+];
+---
+
+<section class="section how">
+  <div class="container">
+    <p class="kicker">How it works</p>
+    <h2 class="section-title">From verses to video in four steps</h2>
+    <p class="section-sub">
+      No editing skills needed. If you can pick a surah, you can make a video.
+    </p>
+    <div class="steps">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="step-n">{s.n}</div>
+          <div>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .kicker {
+    text-align: center;
+    color: var(--green);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+  .step {
+    display: flex;
+    gap: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  .step-n {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .step h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .step p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+</style>

@@ -1,0 +1,101 @@
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="version-badge">
+      <span class="dot"></span>
+      v1.0.0
+    </div>
+    <h1 class="hero-title">
+      <span class="brand-quran">Quran</span> <span class="brand-studio">Studio</span>
+    </h1>
+    <p class="hero-tag">
+      Create beautiful Quran recitation videos in minutes.<br />
+      Pick a reciter, style the verses, export in HD — free forever.
+    </p>
+    <div class="hero-cta">
+      <a href="#download" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Download for Windows
+      </a>
+      <a
+        href="https://github.com/DashingMZA/quran-studio"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-ghost"
+      >
+        View on GitHub
+      </a>
+    </div>
+    <p class="hero-note">Open source &amp; free forever &bull; No account needed</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 6rem 0 5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse, var(--green-glow) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+  }
+  .version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-soft);
+    margin-bottom: 1.5rem;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+  }
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+  }
+  .hero-tag {
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 auto 2.25rem;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+  .hero-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+</style>

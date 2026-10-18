@@ -1,0 +1,78 @@
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo" aria-label="Quran Studio home">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <rect width="34" height="34" rx="9" fill="#16a34a" />
+        <path
+          d="M17 7c-4.5 2-7 5.2-7 9a7 7 0 0 0 12.4 4.4L17 25l-2.2-2.2A7 7 0 0 0 17 16c0-3.8 2.5-7 7-9-1.5-.6-4.2 0-7 0z"
+          fill="#fff"
+          opacity="0.95"
+        />
+        <circle cx="17" cy="16" r="2.4" fill="#16a34a" />
+      </svg>
+      <span class="logo-text"><span class="brand-quran">Quran</span> <span class="brand-studio">Studio</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#support">Support</a>
+      <a
+        href="https://github.com/DashingMZA/quran-studio"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-ghost btn-sm"
+      >
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .nav-links a:not(.btn) {
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:not(.btn):hover {
+    color: var(--green);
+  }
+  .btn-sm {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 640px) {
+    .nav-links a:not(.btn) {
+      display: none;
+    }
+  }
+</style>

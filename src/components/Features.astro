@@ -1,0 +1,100 @@
+---
+const features = [
+  {
+    icon: "📖",
+    title: "Surah & Verse Picker",
+    text: "Browse all 114 surahs and pick any verse range. The full Uthmani text loads instantly with word-by-word timing.",
+  },
+  {
+    icon: "🎙️",
+    title: "Famous Reciters",
+    text: "Choose from renowned reciters with high-quality audio. Every recitation ships with precise verse timings.",
+  },
+  {
+    icon: "🌊",
+    title: "Waveform & Sync",
+    text: "See your audio as a live waveform. Verses highlight in perfect sync with the recitation — automatically.",
+  },
+  {
+    icon: "🎨",
+    title: "Beautiful Typography",
+    text: "Elegant Arabic fonts, custom colors, sizes and highlight styles. Make every verse look the way it deserves.",
+  },
+  {
+    icon: "🖼️",
+    title: "Backgrounds",
+    text: "Calm gradients, mosque imagery and nature scenes — or drop in your own background for a personal touch.",
+  },
+  {
+    icon: "🌍",
+    title: "Urdu Translation",
+    text: "Show the Urdu translation under each verse, so every viewer understands what they hear.",
+  },
+  {
+    icon: "🎬",
+    title: "HD MP4 Export",
+    text: "Render crisp HD videos right on your machine — ready for YouTube, TikTok, Instagram and WhatsApp.",
+  },
+  {
+    icon: "💻",
+    title: "Desktop + Web",
+    text: "A fast native desktop app for Windows, plus a web version that runs right in your browser.",
+  },
+  {
+    icon: "🆓",
+    title: "Free Forever",
+    text: "Open source under GPL-3.0. No accounts, no watermarks, no subscriptions — ever.",
+  },
+];
+---
+
+<section id="features" class="section">
+  <div class="container">
+    <h2 class="section-title">Everything you need</h2>
+    <p class="section-sub">
+      Built for creators, by a creator. Quran Studio combines power with
+      simplicity — one window, from verse selection to finished video.
+    </p>
+    <div class="grid">
+      {features.map((f) => (
+        <div class="card">
+          <div class="card-icon">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--green-dark);
+    transform: translateY(-3px);
+  }
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+</style>
