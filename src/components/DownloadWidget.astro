@@ -101,8 +101,16 @@
     }
 
     function renderRelease(release) {
-        var tag = release.tag_name || "";
-        versionEl.textContent = "Latest version: " + tag;
+        var tag = (release.tag_name || "").replace(/^v/i, "");
+        var dateStr = "";
+        if (release.published_at) {
+          var d = new Date(release.published_at);
+          var months = ["January","February","March","April","May","June",
+            "July","August","September","October","November","December"];
+          var day = ("0" + d.getDate()).slice(-2);
+          dateStr = " • Released " + months[d.getMonth()] + " " + day + ", " + d.getFullYear();
+        }
+        versionEl.textContent = "Latest version: " + tag + dateStr;
 
         var assets = (release.assets || [])
           .map(function (a) {
@@ -142,17 +150,18 @@
           var btns = document.createElement("div");
           btns.className = "dl-os-btns";
           files.forEach(function (f) {
+            var card = document.createElement("div");
+            card.className = "dl-card";
+            card.innerHTML =
+              '<div class="dl-card-icon">' + OS_META[os].icon + "</div>" +
+              '<div class="dl-card-title">' + f.label + "</div>" +
+              '<div class="dl-card-sub">' + os + "</div>";
             var a = document.createElement("a");
             a.href = f.url;
             a.className = "btn " + (os === myOS ? "btn-primary" : "btn-ghost");
-            a.innerHTML =
-              '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-              'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-              '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>' +
-              '<polyline points="7 10 12 15 17 10"/>' +
-              '<line x1="12" y1="15" x2="12" y2="3"/></svg>' +
-              "<span>Download " + f.label + "</span>";
-            btns.appendChild(a);
+            a.textContent = "Download";
+            card.appendChild(a);
+            btns.appendChild(card);
           });
           group.appendChild(btns);
           groupsEl.appendChild(group);
