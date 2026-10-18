@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import FirstVideo from "../components/FirstVideo.astro";
+import Screenshots from "../components/Screenshots.astro";
 import Footer from "../components/Footer.astro";
 import { seo } from "../lib/seo";
 ---
@@ -11,7 +12,8 @@ import { seo } from "../lib/seo";
 <Layout
   {...seo({
     title: "How It Works — " + SITE_NAME,
-    description: "From verses to video in four steps: pick your verses, choose a reciter, style it your way, export and share. Your first video in 10 minutes.",
+    description:
+      "From verses to video in four steps: pick your verses, choose a reciter, style it your way, export and share. Your first video in 10 minutes.",
     path: "/how-it-works",
   })}
 >
@@ -19,6 +21,7 @@ import { seo } from "../lib/seo";
   <main>
     <HowItWorks />
     <FirstVideo />
+    <Screenshots />
     <section class="section">
       <div class="container" style="text-align: center">
         <a href="/download" class="btn btn-primary">Start Creating Today</a>

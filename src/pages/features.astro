@@ -2,6 +2,7 @@
 import { SITE_NAME } from "../config/site";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
+import Screenshots from "../components/Screenshots.astro";
 import Features from "../components/Features.astro";
 import Footer from "../components/Footer.astro";
 import { seo } from "../lib/seo";
@@ -10,11 +11,15 @@ import { seo } from "../lib/seo";
 <Layout
   {...seo({
     title: "Features — " + SITE_NAME,
-    description: "Everything " + SITE_NAME + " can do: surah picker, famous reciters, auto-synced verses, beautiful typography, backgrounds, Urdu translation and HD MP4 export.",
+    description:
+      "Everything " +
+      SITE_NAME +
+      " can do: surah picker, famous reciters, auto-synced verses, beautiful typography, backgrounds, Urdu translation and HD MP4 export.",
     path: "/features",
   })}
 >
   <Nav />
+  <Screenshots />
   <main>
     <Features />
     <section class="section">
