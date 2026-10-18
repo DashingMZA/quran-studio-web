@@ -6,7 +6,8 @@ Landing page for Quran Studio (DashingMZA/quran-studio), built with Astro 7 stat
 - Astro 7 (static, no adapter), TypeScript, plain CSS in `.astro` files
 - pnpm 12.9.1, Node >= 20, `packageManager` pinned
 - Deploys: Vercel (framework preset Astro) and Cloudflare Workers static assets
-  (`wrangler.toml` + `wrangler.jsonc`, `[assets]` → `./dist`, SPA fallback)
+  (`wrangler.toml` + `wrangler.jsonc`, `[assets]` → `./dist`, `not_found_handling = "404-page"`
+  so the custom 404 page works — never "single-page-application" on this multi-page site)
 
 ## Conventions
 - One section = one component in `src/components/`, composed in `src/pages/index.astro`

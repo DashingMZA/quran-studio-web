@@ -1,5 +1,6 @@
 ---
-import { GA_ID, SITE_VERIFICATION, SITE_URL } from "../config/site";
+import { SITE_VERIFICATION, SITE_URL } from "../config/site";
+import CookieConsent from "../components/CookieConsent.astro";
 
 interface Props {
   title: string;
@@ -78,18 +79,8 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
     {/* RSS feed for readers & AI agents */}
     <link rel="alternate" type="application/rss+xml" title={`${SITE_URL} — RSS`} href={`${SITE_URL}/rss.xml`} />
 
-    {/* Google Analytics 4 (ID lives in src/config/site.ts — paste GA_ID to enable) */}
-    {GA_ID && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-        <script define:vars={{ GA_ID }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', GA_ID);
-        </script>
-      </>
-    )}
+    {/* Google Analytics 4 loads only after cookie consent (see CookieConsent.astro).
+        Paste your Measurement ID as GA_ID in src/config/site.ts to enable. */}
 
     <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" />
     <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96"/>
@@ -101,6 +92,7 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
   </head>
   <body>
     <slot />
+    <CookieConsent />
   </body>
 </html>
 

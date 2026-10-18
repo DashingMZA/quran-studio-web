@@ -50,3 +50,14 @@
   OG image sharing fixed via absolute-URL resolution (owner's data untouched).
   robots.txt/sitemap.xml fixed. New: 404, 500, /disclaimer, /sitemap,
   /rss.xml, /llms.txt. package.json: test/test:types/test:build/test:links.
+- **2026-10-18:** Audit fixes batch: astro.config.mjs now sets `site:` from
+  SITE_URL (canonical/RSS/sitemap URLs correct); wrangler not_found_handling
+  "single-page-application" -> "404-page" in BOTH wrangler.toml+jsonc (files
+  kept per owner); vercel.json: vercel.app -> quranstudio.cyou 301 redirect,
+  security headers (CSP/X-Frame-Options/Referrer-Policy/Permissions-Policy),
+  immutable cache for /_astro + /icons; DownloadWidget: sessionStorage cache
+  (1h TTL) for GitHub release API; Hero version badge auto-updates from
+  release API (fallback v1.0.1); CookieConsent.astro (GDPR banner, GA loads
+  only after accept); privacy policy covers cookies/GA/ads; CI workflow
+  (.github/workflows/ci.yml) runs pnpm test on push+PR; LICENSE (GPL-3.0);
+  README rewritten (multi-page, site.ts config, tests, deploy).

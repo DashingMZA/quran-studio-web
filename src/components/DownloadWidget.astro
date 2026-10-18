@@ -60,12 +60,35 @@
         OWNER + "/" + REPO + '/releases/latest">Get them from GitHub Releases</a>.';
     }
 
-    fetch("https://api.github.com/repos/" + OWNER + "/" + REPO + "/releases/latest")
-      .then(function (r) {
-        if (!r.ok) throw new Error("release fetch failed");
-        return r.json();
-      })
-      .then(function (release) {
+    // Cache the release payload in sessionStorage (1h TTL) to stay far
+    // below GitHub's unauthenticated rate limit (60 req/hour per IP).
+    var CACHE_KEY = "qs-release";
+    var CACHE_TTL = 3600000;
+
+    function readCache() {
+      try {
+        var raw = sessionStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        var c = JSON.parse(raw);
+        if (Date.now() - c.at > CACHE_TTL) return null;
+        return c.release;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function writeCache(release) {
+      try {
+        sessionStorage.setItem(
+          CACHE_KEY,
+          JSON.stringify({ at: Date.now(), release: release })
+        );
+      } catch (e) {
+        /* storage unavailable — continue without cache */
+      }
+    }
+
+    function renderRelease(release) {
         var tag = release.tag_name || "";
         versionEl.textContent = "Latest version: " + tag;
 
@@ -122,7 +145,22 @@
           group.appendChild(btns);
           groupsEl.appendChild(group);
         });
-      })
-      .catch(showError);
+    }
+
+    var cached = readCache();
+    if (cached) {
+      renderRelease(cached);
+    } else {
+      fetch("https://api.github.com/repos/" + OWNER + "/" + REPO + "/releases/latest")
+        .then(function (r) {
+          if (!r.ok) throw new Error("release fetch failed");
+          return r.json();
+        })
+        .then(function (release) {
+          writeCache(release);
+          renderRelease(release);
+        })
+        .catch(showError);
+    }
   })();
 </script>
