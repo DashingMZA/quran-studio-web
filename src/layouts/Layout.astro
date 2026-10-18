@@ -2,23 +2,78 @@
 interface Props {
   title: string;
   description: string;
+  themeColor: string;
+  canonicalUrl: string;
+  canonicalUrlen: string;
+  canonicalUrlur: string;
+  canonicalUrldefault: string;
+  ogtitle: string;
+  ogdescription: string;
+  ogurl: string;
+  ogsitename: string;
+  oglocale: string;
+  ogtype: string;
+  ogupdatedtime: string;
+  ogimage: string;
+  ogimagealt: string;
+  ogimagetype: string;
+  ogimagewidth: string;
+  ogimageheight: string;
+  oglocalealternate: string;
+  twittercard: string;
+  twittertitle: string;
+  twitterdescription: string;
+  twitterimage: string;
+  twitterimagealt: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalUrlur, canonicalUrldefault, ogtitle, ogdescription, ogurl, ogsitename, oglocale, ogtype, ogupdatedtime, ogimage, ogimagealt, ogimagetype, ogimagewidth, ogimageheight, oglocalealternate, twittercard, twittertitle, twitterdescription, twitterimage, twitterimagealt } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#0a0a0a" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+    <meta name="theme-color" content={themeColor} />
+
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={canonicalUrlen} />
+    <link rel="alternate" hreflang="ur" href={canonicalUrlur} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrldefault} />
+
+    <meta property="og:title" content={ogtitle} />
+    <meta property="og:description" content={ogdescription} />
+    <meta property="og:url" content={ogurl} />
+    <meta property="og:site_name" content={ogsitename} />
+    <meta property="og:locale" content={oglocale} />
+    <meta property="og:type" content={ogtype} />
+    <meta property="og:updated_time" content={ogupdatedtime} />
+
+    <meta property="og:image" content={ogimage} />
+    <meta property="og:image:alt" content={ogimagealt} />
+    <meta property="og:image:type" content={ogimagetype} />
+    <meta property="og:image:width" content={ogimagewidth} />
+    <meta property="og:image:height" content={ogimageheight} />
+    <meta property="og:locale:alternate" content={oglocalealternate} />
+
+    <meta name="twitter:card" content={twittercard} />
+    <meta name="twitter:title" content={twittertitle} />
+    <meta name="twitter:description" content={twitterdescription} />
+    <meta name="twitter:image" content={twitterimage} />
+    <meta name="twitter:image:alt" content={twitterimagealt} />
+
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" />
+    <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/png" href="/icons/web-app-manifest-192x192.png" sizes="192x192"/>
+    <link rel="icon" href="icons/favicon.ico" sizes="48x48"/>
+    <link rel="apple-touch-icon" type="image/png" href="/icons/apple-touch-icon.png" sizes="180x180"/>
+
+    <link rel="manifest" href="/icons/site.webmanifest" />
   </head>
   <body>
     <slot />
