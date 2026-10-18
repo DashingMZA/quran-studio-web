@@ -2,6 +2,8 @@
 import {
   SITE_URL,
   SITE_NAME,
+  SITE_BIOINFO,
+  SITE_DOMAIN,
   AUTHOR_NAME,
   AUTHOR_GITHUB,
   GITHUB_REPO,
@@ -30,9 +32,7 @@ import {
         >
       </a>
       <p>
-        {SITE_NAME} is a modern Desktop application that empowers users to
-        create beautiful, shareable Quranic videos optimized for YouTube,
-        Instagram Reels, and more.
+        {SITE_BIOINFO}
       </p>
     </div>
     <div class="footer-links">
@@ -41,24 +41,9 @@ import {
       <a href="/download">Download</a>
       <a href="/faq">FAQ</a>
       <a href="/about">About</a>
-      <a href="/contact">Contact</a>
     </div>
     <div class="footer-links">
-      <a
-        href={GITHUB_REPO}
-        target="_blank"
-        rel="noopener">GitHub</a
-      >
-      <a
-        href={GITHUB_RELEASES}
-        target="_blank"
-        rel="noopener">Releases</a
-      >
-
-
-
-
-
+      <a href="/contact">contact</a>
       <a href="/privacy-policy">Privacy Policy</a>
       <a href="/terms-of-use">Terms of Use</a>
       <a href="/disclaimer">Disclaimer</a>
@@ -67,28 +52,34 @@ import {
   </div>
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-    <p class="copyright">
-      Developed by <a
-        href={AUTHOR_GITHUB}
-        target="_blank"
-        rel="noopener">{AUTHOR_NAME}</a
-      > © 2026 <a href={SITE_URL} target="_blank" rel="noopener"
-        >QuranStudio.cyou</a
-      >. All rights reserved.
-    </p>
-    <div class="social-icons">
-      {SOCIALS.filter((s) => s.url).map((s) => (
-        <a
-          href={s.url}
-          target="_blank"
-          rel="noopener"
-          aria-label={s.name}
-          title={s.name}
-        >
-          <img src={s.icon} alt={s.name} width="20" height="20" loading="lazy" />
-        </a>
-      ))}
-    </div>
+      <p class="copyright">
+        Developed by <a href={AUTHOR_GITHUB} target="_blank" rel="noopener"
+          >{AUTHOR_NAME}</a
+        > © 2026 <a href={SITE_URL} target="_blank" rel="noopener"
+          >{SITE_DOMAIN}</a
+        >. All rights reserved.
+      </p>
+      <div class="social-icons">
+        {
+          SOCIALS.filter((s) => s.url).map((s) => (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener"
+              aria-label={s.name}
+              title={s.name}
+            >
+              <img
+                src={s.icon}
+                alt={s.name}
+                width="20"
+                height="20"
+                loading="lazy"
+              />
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
 </footer>

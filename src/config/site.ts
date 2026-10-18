@@ -9,8 +9,10 @@
 // ---------- Site ----------
 export const SITE_URL = "https://quranstudio.cyou";
 export const SITE_NAME = "Quran Studio";
+export const SITE_BIOINFO = "Quran Studio is a modern Desktop application that empowers users to create beautiful, shareable Quranic videos optimized for YouTube, Instagram Reels, and more.";
 /** Web app hosted on the app subdomain */
 export const APP_URL = "https://app.quranstudio.cyou";
+export const SITE_DOMAIN = "QuranStudio.cyou";
 
 // ---------- Author ----------
 export const AUTHOR_NAME = "Zaheer Ahmad";
