@@ -25,12 +25,29 @@ export const GITHUB_LICENSE = `${GITHUB_REPO}/blob/master/LICENSE`;
 // Fill in your profile URLs; empty string = icon hidden.
 export const SOCIALS: { name: string; url: string; icon: string }[] = [
   { name: "GitHub", url: GITHUB_REPO, icon: "/social_media/github.svg" },
-  { name: "X", url: "", icon: "/social_media/x.svg" },
+  { name: "X", url: "https://x.com/Dashing_ZB", icon: "/social_media/x.svg" },
   { name: "YouTube", url: "", icon: "/social_media/youtube.svg" },
-  { name: "Instagram", url: "", icon: "/social_media/instagram.svg" },
-  { name: "Facebook", url: "", icon: "/social_media/facebook.svg" },
-  { name: "TikTok", url: "", icon: "/social_media/tiktok.svg" },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/dashing.mza",
+    icon: "/social_media/instagram.svg",
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/dashing.mza",
+    icon: "/social_media/facebook.svg",
+  },
+  {
+    name: "TikTok",
+    url: "https://www.tiktok.com/@dashing.mza",
+    icon: "/social_media/tiktok.svg",
+  },
   { name: "Telegram", url: "", icon: "/social_media/telegram.svg" },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/mzaheera/",
+    icon: "/social_media/linkedin.svg",
+  },
 ];
 
 // ---------- Analytics ----------

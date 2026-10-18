@@ -61,3 +61,7 @@
   only after accept); privacy policy covers cookies/GA/ads; CI workflow
   (.github/workflows/ci.yml) runs pnpm test on push+PR; LICENSE (GPL-3.0);
   README rewritten (multi-page, site.ts config, tests, deploy).
+- **2026-10-18:** Logos + socials (owner request): Nav/Footer now use
+  /icons/quran-studio-logo-dark.svg image (replacing inline SVG/text);
+  SOCIALS in src/config/site.ts filled with owner's LinkedIn/Instagram/
+  Facebook/TikTok/X URLs; social icons render in footer from config.

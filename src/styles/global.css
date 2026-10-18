@@ -776,3 +776,40 @@ a {
   color: var(--green);
   text-decoration: underline;
 }
+
+/* ---- logo images ---- */
+.logo-img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+a.logo {
+  display: inline-flex;
+  align-items: center;
+}
+.footer-brand .logo-img {
+  height: 44px;
+  margin-bottom: 0.75rem;
+}
+/* ---- social icons ---- */
+.social-icons {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.social-icons a {
+  display: inline-flex;
+  opacity: 0.7;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.social-icons a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+.social-icons img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
