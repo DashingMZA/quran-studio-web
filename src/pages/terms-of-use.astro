@@ -1,4 +1,5 @@
 ---
+import { SITE_NAME } from "../config/site";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -7,8 +8,8 @@ import { seo } from "../lib/seo";
 
 <Layout
   {...seo({
-    title: "Terms of Use — Quran Studio",
-    description: "Terms of use for Quran Studio software and this website.",
+    title: "Terms of Use — " + SITE_NAME,
+    description: "Terms of use for " + SITE_NAME + " software and this website.",
     path: "/terms-of-use",
   })}
 >
@@ -20,19 +21,9 @@ import { seo } from "../lib/seo";
         <p class="section-sub">Last updated: October 2026</p>
         <div class="prose-body">
           <h2>The Software</h2>
-          <p>
-            Quran Studio is free software licensed under the
-            <strong>GNU General Public License v3.0</strong>. Your use of the
-            software is governed by that license — including the warranty
-            disclaimer: the software is provided "as is", without warranty of
-            any kind.
-          </p>
+          <p><strong>{SITE_NAME}</strong> is free software licensed under the <strong>GNU General Public License v3.0</strong>. Your use of the software is governed by that license — including the warranty disclaimer: the software is provided "as is", without warranty of any kind.</p>
           <h2>Videos You Create</h2>
-          <p>
-            Videos you render with Quran Studio are yours to share. Be mindful
-            that reciter audio and background imagery may carry their own
-            rights — use them respectfully and within applicable law.
-          </p>
+          <p>Videos you render with <strong>{SITE_NAME}</strong> are yours to share. Be mindful that reciter audio and background imagery may carry their own rights — use them respectfully and within applicable law.</p>
           <h2>This Website</h2>
           <ul>
             <li>Content here is provided for information about the project.</li>
@@ -40,9 +31,7 @@ import { seo } from "../lib/seo";
             <li>We may update these terms; continued use means acceptance.</li>
           </ul>
           <h2>Acceptable Use</h2>
-          <p>
-            Don't misrepresent the software, don't use it to harm others, and
-            don't strip license or attribution notices from redistributed copies.
+          <p>Don't misrepresent the software, don't use it to harm others, and don't strip license or attribution notices from redistributed copies.
           </p>
         </div>
       </div>

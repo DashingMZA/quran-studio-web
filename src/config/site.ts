@@ -22,6 +22,7 @@ export const AUTHOR_GITHUB = "https://github.com/DashingMZA";
 export const GITHUB_REPO = "https://github.com/DashingMZA/quran-studio";
 export const GITHUB_RELEASES = `${GITHUB_REPO}/releases`;
 export const GITHUB_LICENSE = `${GITHUB_REPO}/blob/master/LICENSE`;
+export const GITHUB_REPONAME = "DashingMZA/quran-studio";
 
 // ---------- Support / Donations ----------
 export const SUPPORT_KOFI = "https://ko-fi.com/dashingmza";
@@ -34,27 +35,11 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
   { name: "GitHub", url: GITHUB_REPO, icon: "/social_media/github.svg" },
   { name: "X", url: "https://x.com/Dashing_ZB", icon: "/social_media/x.svg" },
   { name: "YouTube", url: "", icon: "/social_media/youtube.svg" },
-  {
-    name: "Instagram",
-    url: "https://www.instagram.com/dashing.mza",
-    icon: "/social_media/instagram.svg",
-  },
-  {
-    name: "Facebook",
-    url: "https://www.facebook.com/dashing.mza",
-    icon: "/social_media/facebook.svg",
-  },
-  {
-    name: "TikTok",
-    url: "https://www.tiktok.com/@dashing.mza",
-    icon: "/social_media/tiktok.svg",
-  },
+  {name: "Instagram", url: "https://www.instagram.com/dashing.mza", icon: "/social_media/instagram.svg",},
+  { name: "Facebook", url: "https://www.facebook.com/dashing.mza", icon: "/social_media/facebook.svg",},
+  { name: "TikTok", url: "https://www.tiktok.com/@dashing.mza", icon: "/social_media/tiktok.svg",},
   { name: "Telegram", url: "", icon: "/social_media/telegram.svg" },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/mzaheera/",
-    icon: "/social_media/linkedin.svg",
-  },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/mzaheera/", icon: "/social_media/linkedin.svg",},
 ];
 
 // ---------- Analytics ----------
@@ -74,16 +59,14 @@ export const SITE_VERIFICATION = {
 /** Full SEO prop set expected by src/layouts/Layout.astro */
 export const DEFAULT_SEO = {
   title: "Quran Studio — Create Beautiful Quran Recitation Videos",
-  description:
-    "Quran Studio is a free, open-source app to create beautiful Quran recitation videos. Pick a reciter, style the verses, export in HD.",
+  description: "Quran Studio is a free, open-source app to create beautiful Quran recitation videos. Pick a reciter, style the verses, export in HD.",
   themeColor: "#0a0a0a",
   canonicalUrl: SITE_URL,
   canonicalUrlen: SITE_URL,
   canonicalUrlur: `${SITE_URL}/ur`,
   canonicalUrldefault: SITE_URL,
   ogtitle: "Quran Video Studio is an online tool to create and edit Quran videos.",
-  ogdescription:
-    "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
+  ogdescription: "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
   ogurl: SITE_URL,
   ogsitename: SITE_NAME,
   oglocale: "en_US",
@@ -97,8 +80,7 @@ export const DEFAULT_SEO = {
   ogimageheight: "1038",
   twittercard: "summary_large_image",
   twittertitle: "Create and export professional Quran videos online",
-  twitterdescription:
-    "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
+  twitterdescription: "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
   twitterimage: "/screenshots/quran-studio.png",
   twitterimagealt: "Quran Studio — Create Beautiful Quran Recitation Videos",
 };

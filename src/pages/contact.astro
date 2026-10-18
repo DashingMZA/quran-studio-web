@@ -1,5 +1,5 @@
 ---
-import { GITHUB_REPO } from "../config/site";
+import { SITE_NAME, GITHUB_REPO} from "../config/site";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -8,9 +8,8 @@ import { seo } from "../lib/seo";
 
 <Layout
   {...seo({
-    title: "Contact — Quran Studio",
-    description:
-      "Get in touch about Quran Studio: bug reports, feature requests and questions via GitHub.",
+    title: "Contact — " + SITE_NAME,
+    description: "Get in touch about " + SITE_NAME + ": bug reports, feature requests and questions via GitHub.",
     path: "/contact",
   })}
 >
@@ -22,21 +21,11 @@ import { seo } from "../lib/seo";
         <p class="section-sub">Questions, bugs, or ideas — here's where to reach us.</p>
         <div class="prose-body">
           <h2>🐛 Bug Reports &amp; Feature Requests</h2>
-          <p>
-            The fastest way is GitHub Issues on the
-            <a href={GITHUB_REPO} target="_blank" rel="noopener">quran-studio repository</a>.
-            Please include your app version, Windows version, and steps to reproduce.
-          </p>
+          <p>The fastest way is GitHub Issues on the <a href={GITHUB_REPO} target="_blank" rel="noopener">{SITE_NAME} Repository</a>. Please include your app version, Windows version, and steps to reproduce.</p>
           <h2>💬 Questions</h2>
-          <p>
-            Check the <a href="/faq">FAQ</a> first — most common questions are
-            answered there.
-          </p>
+          <p>Check the <a href="/faq">FAQ</a> first — most common questions are answered there.</p>
           <h2>🤝 Contributing</h2>
-          <p>
-            Quran Studio is open source (GPL-3.0). Pull requests are welcome —
-            see the repository README for the development setup.
-          </p>
+          <p>{SITE_NAME} is open source (GPL-3.0). Pull requests are welcome — see the repository README for the development setup.</p>
         </div>
       </div>
     </section>

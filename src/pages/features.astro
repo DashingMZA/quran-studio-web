@@ -1,4 +1,5 @@
 ---
+import { SITE_NAME } from "../config/site";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Features from "../components/Features.astro";
@@ -8,9 +9,8 @@ import { seo } from "../lib/seo";
 
 <Layout
   {...seo({
-    title: "Features — Quran Studio",
-    description:
-      "Everything Quran Studio can do: surah picker, famous reciters, auto-synced verses, beautiful typography, backgrounds, Urdu translation and HD MP4 export.",
+    title: "Features — " + SITE_NAME,
+    description: "Everything " + SITE_NAME + " can do: surah picker, famous reciters, auto-synced verses, beautiful typography, backgrounds, Urdu translation and HD MP4 export.",
     path: "/features",
   })}
 >
@@ -21,7 +21,7 @@ import { seo } from "../lib/seo";
       <div class="container" style="text-align: center">
         <h2 class="section-title">Ready to try it?</h2>
         <p class="section-sub">Free forever. No account, no watermark.</p>
-        <a href="/download" class="btn btn-primary">Download Quran Studio</a>
+        <a href="/download" class="btn btn-primary">Download {SITE_NAME}</a>
       </div>
     </section>
   </main>

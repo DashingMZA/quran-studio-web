@@ -1,4 +1,5 @@
 ---
+import { SITE_NAME, AUTHOR_NAME } from "../config/site";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -7,9 +8,8 @@ import { seo } from "../lib/seo";
 
 <Layout
   {...seo({
-    title: "About — Quran Studio",
-    description:
-      "Quran Studio is a free, open-source app for creating beautiful Quran recitation videos — built by DashingMZA for creators everywhere.",
+    title: "About — " + SITE_NAME,
+    description: SITE_NAME + " is a free, open-source app for creating beautiful Quran recitation videos — built by " + AUTHOR_NAME + " for creators everywhere.",
     path: "/about",
   })}
 >
@@ -17,27 +17,16 @@ import { seo } from "../lib/seo";
   <main>
     <section class="section">
       <div class="container prose">
-        <h1 class="section-title">About Quran Studio</h1>
+        <h1 class="section-title">About {SITE_NAME}</h1>
         <p class="section-sub">Beautiful Quran videos, free for everyone.</p>
         <div class="prose-body">
-          <p>
-            <strong><span class="brand-quran">Quran</span> <span class="brand-studio">Studio</span></strong>
-            is a free, open-source application for creating beautiful Quran
-            recitation videos. Pick any surah and verse range, choose from
-            renowned reciters, style the verses your way, and export an HD
-            video — in minutes, not hours.
+          <p><strong><span class="brand-quran">Quran</span><span class="brand-studio">Studio</span></strong> is a free, open-source application for creating beautiful Quran recitation videos. Pick any surah and verse range, choose from renowned reciters, style the verses your way, and export an HD video — in minutes, not hours.
           </p>
-          <p>
-            It was built by <strong>DashingMZA</strong> for creators, students,
-            and anyone sharing the words of the Quran online. The goal is
-            simple: remove every barrier between a verse and a beautiful video.
-          </p>
+          <p>It was built by <strong>{AUTHOR_NAME}</strong> for creators, students, and anyone sharing the words of the Quran online. The goal is simple: remove every barrier between a verse and a beautiful video.</p>
           <h2>Open Source</h2>
           <p>
-            Quran Studio is released under the
-            <strong>GNU General Public License v3.0</strong>. The full source
-            code is available on GitHub — audit it, learn from it, or
-            contribute to it.
+            <strong>{SITE_NAME}</strong> is released under the
+            <strong>GNU General Public License v3.0</strong>. The full source code is available on GitHub — audit it, learn from it, or contribute to it.
           </p>
           <h2>What It Does</h2>
           <ul>
@@ -48,11 +37,7 @@ import { seo } from "../lib/seo";
             <li>One-click HD MP4 export for YouTube, TikTok &amp; Instagram</li>
           </ul>
           <h2>Support the Project</h2>
-          <p>
-            Quran Studio will always be free. If it helps your work, consider
-            supporting development via the links on the
-            <a href="/#support">home page</a>.
-          </p>
+          <p><strong>{SITE_NAME}</strong> will always be free. If it helps your work, consider supporting development via the links on the <a href="/#support">home page</a>.</p>
         </div>
       </div>
     </section>

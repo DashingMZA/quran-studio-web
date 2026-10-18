@@ -1,12 +1,17 @@
-import { SITE_URL, SITE_NAME } from "../config/site";
+import { SITE_URL, SITE_NAME, AUTHOR_NAME } from "../config/site";
 
 const pages = [
   { path: "/", title: "Home", description: "Create beautiful Quran recitation videos — free, open source." },
-  { path: "/features", title: "Features", description: "Everything Quran Studio can do." },
-  { path: "/how-it-works", title: "How It Works", description: "From verse to video in four steps." },
-  { path: "/download", title: "Download", description: "Get Quran Studio for Windows, macOS, or Linux." },
-  { path: "/faq", title: "FAQ", description: "Frequently asked questions." },
-  { path: "/about", title: "About", description: "About the project." },
+  { path: "/features", title: "Features", description: "Everything " + SITE_NAME + " can do: surah picker, famous reciters, auto-synced verses, beautiful typography, backgrounds, Urdu translation and HD MP4 export." },
+  { path: "/how-it-works", title: "How It Works", description: "From verses to video in four steps: pick your verses, choose a reciter, style it your way, export and share. Your first video in 10 minutes." },
+  { path: "/download", title: "Download", description: "Download " + SITE_NAME + " for Windows, macOS, or Linux. Free, open-source Quran recitation video editor. No account needed." },
+  { path: "/faq", title: "FAQ", description: "Frequently asked questions about " + SITE_NAME + ": pricing, Windows support, reciters, exports, offline use and more." },
+  { path: "/about", title: "About", description: SITE_NAME + " is a free, open-source app for creating beautiful Quran recitation videos — built by " + AUTHOR_NAME + " for creators everywhere." },
+  { path: "/contact", title: "Contact", description: "Get in touch about " + SITE_NAME + ": bug reports, feature requests and questions via GitHub." },
+  { path: "/privacy-policy", title: "Privacy Policy", description: "Our privacy policy." },
+  { path: "/terms-of-use", title: "Terms of Use", description: "Terms of use for " + SITE_NAME + " software and this website." },
+  { path: "/disclaimer", title: "Disclaimer", description: "Disclaimer for " + SITE_NAME + ": accuracy of Quranic content, third-party services, and limitation of liability." },
+  { path: "/sitemap", title: "Sitemap", description: "Browse every page on the " + SITE_NAME + " website." },
 ];
 
 const items = pages
