@@ -22,7 +22,9 @@ export const AUTHOR_GITHUB = "https://github.com/DashingMZA";
 export const GITHUB_REPO = "https://github.com/DashingMZA/quran-studio";
 export const GITHUB_RELEASES = `${GITHUB_REPO}/releases`;
 export const GITHUB_LICENSE = `${GITHUB_REPO}/blob/master/LICENSE`;
-export const GITHUB_REPONAME = "DashingMZA/quran-studio";
+export const GITHUB_REPOURL = "DashingMZA/quran-studio";
+export const GITHUB_REPOOWNER = "DashingMZA";
+export const GITHUB_REPONAME = "quran-studio";
 
 // ---------- Support / Donations ----------
 export const SUPPORT_KOFI = "https://ko-fi.com/dashingmza";
@@ -80,16 +82,16 @@ export const DEFAULT_SEO = {
   oglocale: "en_US",
   oglocalealternate: "ur_PK",
   ogtype: "website",
-  ogupdatedtime: "2026-10-17T00:00:00Z",
-  ogimage: "/screenshots/quran-studio.png",
+  ogupdatedtime: "2026-10-18T00:00:00Z",
+  ogimage: `${SITE_URL}/screenshots/quran-studio1.png`,
   ogimagealt: "Quran Studio — Create Beautiful Quran Recitation Videos",
   ogimagetype: "image/png",
   ogimagewidth: "1920",
-  ogimageheight: "1038",
+  ogimageheight: "1080",
   twittercard: "summary_large_image",
   twittertitle: "Create and export professional Quran videos online",
   twitterdescription: "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
-  twitterimage: "/screenshots/quran-studio.png",
+  twitterimage: `${SITE_URL}/screenshots/quran-studio4.png`,
   twitterimagealt: "Quran Studio — Create Beautiful Quran Recitation Videos",
 };
 

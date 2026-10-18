@@ -1,13 +1,5 @@
 ---
-import {
-  SITE_URL,
-  SITE_NAME,
-  APP_URL,
-  AUTHOR_NAME,
-  AUTHOR_GITHUB,
-  GITHUB_REPO,
-  SOCIAL_IMAGE,
-} from "../config/site";
+import {SITE_URL, SITE_NAME, APP_URL, AUTHOR_NAME, AUTHOR_GITHUB, GITHUB_REPO, SOCIAL_IMAGE,} from "../config/site";
 
 const websiteId = `${SITE_URL}/#website`;
 const softwareId = `${SITE_URL}/#software`;
@@ -21,8 +13,7 @@ const schema = {
       "@id": websiteId,
       name: SITE_NAME,
       url: SITE_URL,
-      description:
-        "A free, open-source app for creating Quran recitation videos with reciter audio, verse styling, translations, and HD export.",
+      description: SITE_NAME + " is a free, open-source app to create beautiful Quran recitation videos. Pick a reciter, style the verses, export in HD.",
       inLanguage: "en",
       publisher: {
         "@id": publisherId,
@@ -36,8 +27,7 @@ const schema = {
       "@id": softwareId,
       name: SITE_NAME,
       url: SITE_URL,
-      description:
-        "Create Quran recitation videos with customizable verse styling, reciter audio, and video export.",
+      description: "Create Quran recitation videos with customizable verse styling, reciter audio, and video export.",
       applicationCategory: "MultimediaApplication",
       operatingSystem: "Windows",
       isAccessibleForFree: true,
