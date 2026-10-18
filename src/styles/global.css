@@ -541,9 +541,13 @@ a {
     }
   }
   .footer-bottom {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(34, 197, 94, 0.25);
+    background: #0d1f14;
+    margin-top: 2rem;
+  }
+  .footer-bottom-inner {
     padding-top: 1.25rem;
-    padding-bottom: 0.25rem;
+    padding-bottom: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -575,7 +579,7 @@ a {
     filter: brightness(0) invert(1);
   }
   @media (max-width: 640px) {
-    .footer-bottom {
+    .footer-bottom-inner {
       flex-wrap: wrap;
       justify-content: center;
       text-align: center;
