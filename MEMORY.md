@@ -44,3 +44,9 @@
   shows outside the menu on small screens (whole .nav-links hidden ≤640px,
   GitHub stays in hamburger dropdown); logo white-space:nowrap + smaller on
   mobile so it doesn't wrap to two lines.
+- **2026-10-18:** Central site config + footer socials + error/AdSense pages.
+  src/config/site.ts = ONE file for everything (URLs, socials, GA_ID,
+  verification, SEO). Footer: social icons right of copyright (from config).
+  OG image sharing fixed via absolute-URL resolution (owner's data untouched).
+  robots.txt/sitemap.xml fixed. New: 404, 500, /disclaimer, /sitemap,
+  /rss.xml, /llms.txt. package.json: test/test:types/test:build/test:links.

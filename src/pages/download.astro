@@ -4,7 +4,7 @@ import Nav from "../components/Nav.astro";
 import Download from "../components/Download.astro";
 import Footer from "../components/Footer.astro";
 import { seo } from "../lib/seo";
-import { APP_URL } from "../config/seo";
+import { APP_URL, GITHUB_REPO, GITHUB_RELEASES } from "../config/site";
 ---
 
 <Layout
@@ -124,7 +124,7 @@ import { APP_URL } from "../config/seo";
             🌐 Open Web App
           </a>
           <a
-            href="https://github.com/DashingMZA/quran-studio/releases"
+            href={GITHUB_RELEASES}
             target="_blank"
             rel="noopener"
             class="btn btn-ghost"
@@ -132,7 +132,7 @@ import { APP_URL } from "../config/seo";
             All Releases on GitHub
           </a>
           <a
-            href="https://github.com/DashingMZA/quran-studio"
+            href={GITHUB_REPO}
             target="_blank"
             rel="noopener"
             class="btn btn-ghost"

@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { seo } from "../lib/seo";
+---
+
+<Layout
+  {...seo({
+    title: "Disclaimer — Quran Studio",
+    description:
+      "Disclaimer for Quran Studio: accuracy of Quranic content, third-party services, and limitation of liability.",
+    path: "/disclaimer",
+  })}
+>
+  <Nav />
+  <main>
+    <section class="section">
+      <div class="container prose">
+        <h1 class="section-title">Disclaimer</h1>
+        <p class="section-sub">Last updated: October 2026</p>
+        <div class="prose-body">
+          <h2>Quranic Content Accuracy</h2>
+          <p>
+            Quran Studio displays Quranic text, translations, and recitation
+            audio sourced from third-party providers. While we strive for
+            accuracy, we do not guarantee that all content is free from errors.
+            Users creating videos for publication should verify verses against
+            a trusted mushaf.
+          </p>
+          <h2>Third-Party Services</h2>
+          <p>
+            The app relies on external services (Quran text and audio APIs,
+            background image providers). We are not responsible for the
+            availability, accuracy, or content of these third-party services.
+          </p>
+          <h2>No Religious Ruling</h2>
+          <p>
+            Nothing in Quran Studio constitutes a fatwa or religious ruling.
+            For questions of Islamic jurisprudence, please consult qualified
+            scholars.
+          </p>
+          <h2>Limitation of Liability</h2>
+          <p>
+            Quran Studio is provided "as is", without warranty of any kind.
+            In no event shall the developers be liable for any claim, damages,
+            or other liability arising from the use of the software.
+          </p>
+          <h2>Contact</h2>
+          <p>
+            Questions about this disclaimer? Reach us via the
+            <a href="/contact">contact page</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

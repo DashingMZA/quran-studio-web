@@ -1,5 +1,14 @@
 ---
-import { SITE_URL } from "../config/seo";
+import {
+  SITE_URL,
+  SITE_NAME,
+  AUTHOR_NAME,
+  AUTHOR_GITHUB,
+  GITHUB_REPO,
+  GITHUB_RELEASES,
+  GITHUB_LICENSE,
+  SOCIALS,
+} from "../config/site";
 ---
 
 <footer class="footer">
@@ -10,7 +19,7 @@ import { SITE_URL } from "../config/seo";
         <span class="brand-studio">Studio</span></span
       >
       <p>
-        Quran Studio is a modern Desktop application that empowers users to
+        {SITE_NAME} is a modern Desktop application that empowers users to
         create beautiful, shareable Quranic videos optimized for YouTube,
         Instagram Reels, and more.
       </p>
@@ -25,32 +34,48 @@ import { SITE_URL } from "../config/seo";
     </div>
     <div class="footer-links">
       <a
-        href="https://github.com/DashingMZA/quran-studio"
+        href={GITHUB_REPO}
         target="_blank"
         rel="noopener">GitHub</a
       >
       <a
-        href="https://github.com/DashingMZA/quran-studio/releases"
+        href={GITHUB_RELEASES}
         target="_blank"
         rel="noopener">Releases</a
       >
       <a
-        href="https://github.com/DashingMZA/quran-studio/blob/master/LICENSE"
+        href={GITHUB_LICENSE}
         target="_blank"
         rel="noopener">License (GPL-3.0)</a
       >
       <a href="/privacy-policy">Privacy Policy</a>
       <a href="/terms-of-use">Terms of Use</a>
+      <a href="/disclaimer">Disclaimer</a>
+      <a href="/sitemap">Sitemap</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    <p>
+    <p class="copyright">
       Developed by <a
-        href="https://github.com/DashingMZA"
+        href={AUTHOR_GITHUB}
         target="_blank"
-        rel="noopener">Zaheer Ahmad</a
+        rel="noopener">{AUTHOR_NAME}</a
       > © 2026 <a href={SITE_URL} target="_blank" rel="noopener"
-        >QuranStudio.cyou</a>. All rights reserved.
+        >QuranStudio.cyou</a
+      >. All rights reserved.
     </p>
+    <div class="social-icons">
+      {SOCIALS.filter((s) => s.url).map((s) => (
+        <a
+          href={s.url}
+          target="_blank"
+          rel="noopener"
+          aria-label={s.name}
+          title={s.name}
+        >
+          <img src={s.icon} alt={s.name} width="20" height="20" loading="lazy" />
+        </a>
+      ))}
+    </div>
   </div>
 </footer>
