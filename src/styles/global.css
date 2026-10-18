@@ -1041,6 +1041,11 @@ a.logo {
   width: 26px;
   height: 26px;
 }
+.dl-card-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
 .dl-card-title {
   font-weight: 700;
   font-size: 1.05rem;
