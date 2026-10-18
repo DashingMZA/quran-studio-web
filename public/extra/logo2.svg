@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="1024" height="1024">
+  <rect width="1024" height="1024" rx="56" fill="#16a34a"/>
+  <g fill="#ffffff" opacity="0.96">
+    <!-- open book -->
+    <path d="M128 78 C102 62 72 60 46 68 L46 184 C72 176 102 178 128 194 C154 178 184 176 210 184 L210 68 C184 60 154 62 128 78 Z"/>
+    <!-- page lines -->
+    <path d="M62 92 C82 86 102 88 118 98 L118 168 C102 158 82 156 62 162 Z" fill="#16a34a" opacity="0.35"/>
+    <path d="M194 92 C174 86 154 88 138 98 L138 168 C154 158 174 156 194 162 Z" fill="#16a34a" opacity="0.35"/>
+  </g>
+  <!-- spine -->
+  <rect x="124" y="70" width="8" height="128" rx="4" fill="#16a34a"/>
+</svg>
