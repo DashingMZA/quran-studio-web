@@ -76,3 +76,9 @@
 - og:image / twitter:image tags ab sirf tab render hote hain jab site.ts mein
   SOCIAL_IMAGE set ho. Default khaali = FB/X pe link share karne pe koi image
   nahi aayegi, sirf title + description. twitter:card ab "summary" hai.
+
+## 2026-10-18 — social image RESTORED (my mistake)
+- Maine sawal pe bina confirm kiye og:image hata diya tha — ghalti thi, user ko
+  image chahiye thi. Seekha: sawal != directive, pehle confirm karo.
+- SOCIAL_IMAGE ab `${SITE_URL}/screenshots/quran-studio.png` (absolute URL).
+  Image quran-studio repo se li. Har page share pe yehi image jayegi.

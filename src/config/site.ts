@@ -43,9 +43,9 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
 ];
 
 // ---------- Social preview image ----------
-// URL of the image shown when sharing links on Facebook/X. Empty = no image
-// in link previews (only title + description show).
-export const SOCIAL_IMAGE = "";
+// URL of the image shown when sharing links on Facebook/X.
+// Must be an absolute URL. Empty = no image in link previews.
+export const SOCIAL_IMAGE = `${SITE_URL}/screenshots/quran-studio.png`;
 /** Google Analytics 4 measurement ID — paste your ID here (e.g. "G-XXXXXXXXXX"). Empty = no tracking. */
 export const GA_ID = "";
 
