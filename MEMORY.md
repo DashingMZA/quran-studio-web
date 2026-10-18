@@ -34,3 +34,9 @@
   index.astro's 25 hardcoded props replaced with <Layout {...homeSeo()} />; Footer
   site link now uses SITE_URL. Build verified: homepage renders owner's exact SEO
   values, /download keeps its own title with path-based canonical.
+- **2026-10-18:** Mobile hamburger menu (Nav.astro + CSS, 3-line toggle →
+  dropdown); System Requirements → 3 OS tabs (Windows/macOS/Linux, each with
+  OS-specific notes, visitor's OS pre-selected); footer → 3 divs
+  (brand 1/2 + links 1/4 + links 1/4, stacks on mobile); new "Open Web App"
+  button on /download → APP_URL (https://app.quranstudio.cyou) from
+  src/config/seo.ts (owner will host web app on app subdomain).

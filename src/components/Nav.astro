@@ -26,5 +26,42 @@
         GitHub
       </a>
     </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+  <nav class="mobile-menu" aria-hidden="true">
+    <a href="/features">Features</a>
+    <a href="/how-it-works">How It Works</a>
+    <a href="/download">Download</a>
+    <a href="/faq">FAQ</a>
+    <a
+      href="https://github.com/DashingMZA/quran-studio"
+      target="_blank"
+      rel="noopener"
+    >
+      GitHub
+    </a>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.querySelector(".mobile-menu");
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("open");
+    toggle.classList.toggle("active", open);
+    toggle.setAttribute("aria-expanded", String(!!open));
+    menu?.setAttribute("aria-hidden", String(!open));
+  });
+  menu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      menu.classList.remove("open");
+      toggle?.classList.remove("active");
+      toggle?.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-hidden", "true");
+    })
+  );
+</script>

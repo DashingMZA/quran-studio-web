@@ -7,6 +7,8 @@
 
 export const SITE_URL = "https://quranstudio.cyou";
 export const SITE_NAME = "Quran Studio";
+/** Web app hosted on the app subdomain */
+export const APP_URL = "https://app.quranstudio.cyou";
 
 /** Full SEO prop set expected by src/layouts/Layout.astro */
 export const DEFAULT_SEO = {
