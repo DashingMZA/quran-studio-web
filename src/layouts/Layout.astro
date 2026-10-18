@@ -1,5 +1,5 @@
 ---
-import { SITE_VERIFICATION, SITE_URL } from "../config/site";
+import { SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE } from "../config/site";
 import CookieConsent from "../components/CookieConsent.astro";
 
 interface Props {
@@ -57,18 +57,26 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
     <meta property="og:type" content={ogtype} />
     <meta property="og:updated_time" content={ogupdatedtime} />
 
-    <meta property="og:image" content={ogimage} />
-    <meta property="og:image:alt" content={ogimagealt} />
-    <meta property="og:image:type" content={ogimagetype} />
-    <meta property="og:image:width" content={ogimagewidth} />
-    <meta property="og:image:height" content={ogimageheight} />
+    {SOCIAL_IMAGE && (
+      <>
+        <meta property="og:image" content={SOCIAL_IMAGE} />
+        <meta property="og:image:alt" content={ogimagealt} />
+        <meta property="og:image:type" content={ogimagetype} />
+        <meta property="og:image:width" content={ogimagewidth} />
+        <meta property="og:image:height" content={ogimageheight} />
+      </>
+    )}
     <meta property="og:locale:alternate" content={oglocalealternate} />
 
-    <meta name="twitter:card" content={twittercard} />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={twittertitle} />
     <meta name="twitter:description" content={twitterdescription} />
-    <meta name="twitter:image" content={twitterimage} />
-    <meta name="twitter:image:alt" content={twitterimagealt} />
+    {SOCIAL_IMAGE && (
+      <>
+        <meta name="twitter:image" content={SOCIAL_IMAGE} />
+        <meta name="twitter:image:alt" content={twitterimagealt} />
+      </>
+    )}
 
     {/* Webmaster-tools verification (codes live in src/config/site.ts) */}
     {SITE_VERIFICATION.google && <meta name="google-site-verification" content={SITE_VERIFICATION.google} />}

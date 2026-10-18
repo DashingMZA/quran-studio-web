@@ -7,12 +7,12 @@
  */
 
 // ---------- Site ----------
-export const SITE_URL = "https://quranstudio.bond";
+export const SITE_URL = "https://quranstudio.cyou";
 export const SITE_NAME = "Quran Studio";
 export const SITE_BIOINFO = "Quran Studio is a modern Desktop application that empowers users to create beautiful, shareable Quranic videos optimized for YouTube, Instagram Reels, and more.";
 /** Web app hosted on the app subdomain */
-export const APP_URL = "https://app.quranstudio.bond";
-export const SITE_DOMAIN = "QuranStudio.bond";
+export const APP_URL = "https://app.quranstudio.cyou";
+export const SITE_DOMAIN = "QuranStudio.cyou";
 
 // ---------- Author ----------
 export const AUTHOR_NAME = "Zaheer Ahmad";
@@ -42,7 +42,10 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
   { name: "LinkedIn", url: "https://www.linkedin.com/in/mzaheera/", icon: "/social_media/linkedin.svg",},
 ];
 
-// ---------- Analytics ----------
+// ---------- Social preview image ----------
+// URL of the image shown when sharing links on Facebook/X. Empty = no image
+// in link previews (only title + description show).
+export const SOCIAL_IMAGE = "";
 /** Google Analytics 4 measurement ID — paste your ID here (e.g. "G-XXXXXXXXXX"). Empty = no tracking. */
 export const GA_ID = "";
 

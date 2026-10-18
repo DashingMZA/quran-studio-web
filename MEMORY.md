@@ -71,3 +71,8 @@
   (src/pages/*.ts), rss.xml.ts ki tarah. Static public/ files hata diye.
 - ads.txt ka content src/config/site.ts ke ADS_TXT variable se aata hai —
   khaali ho to 404. site.ts single source of truth hai.
+
+## 2026-10-18 — social preview images off
+- og:image / twitter:image tags ab sirf tab render hote hain jab site.ts mein
+  SOCIAL_IMAGE set ho. Default khaali = FB/X pe link share karne pe koi image
+  nahi aayegi, sirf title + description. twitter:card ab "summary" hai.
