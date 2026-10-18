@@ -9,35 +9,10 @@ import FirstVideo from "../components/FirstVideo.astro";
 import Download from "../components/Download.astro";
 import Support from "../components/Support.astro";
 import Footer from "../components/Footer.astro";
+import { homeSeo } from "../lib/seo";
 ---
 
-<Layout
-  title="Quran Studio — Create Beautiful Quran Recitation Videos"
-  description="Quran Studio is a free, open-source app to create beautiful Quran recitation videos. Pick a reciter, style the verses, export in HD."
-  themeColor="#0a0a0a"
-  canonicalUrl="https://quranstudio.cyou"
-  canonicalUrlen="https://quranstudio.cyou"
-  canonicalUrlur="https://quranstudio.cyou/ur"
-  canonicalUrldefault="https://quranstudio.cyou"
-  ogtitle="Quran Video Studio is an online tool to create and edit Quran videos."
-  ogdescription="Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow."
-  ogurl="https://quranstudio.cyou"
-  ogsitename="Quran Studio"
-  oglocale="en_US"
-  oglocalealternate="ur_PK"
-  ogtype="website"
-  ogupdatedtime="2026-10-17T00:00:00Z"
-  ogimage="/quran-studio.png"
-  ogimagealt="Quran Studio — Create Beautiful Quran Recitation Videos"
-  ogimagetype="image/png"
-  ogimagewidth="1920"
-  ogimageheight="1038"
-  twittercard="summary_large_image"
-  twittertitle="Create and export professional Quran videos online"
-  twitterdescription="Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow."
-  twitterimage="/quran-studio.png"
-  twitterimagealt="Quran Studio — Create Beautiful Quran Recitation Videos"
-/>
+<Layout {...homeSeo()} />
 
 <Nav />
 <main>

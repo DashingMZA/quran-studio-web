@@ -1,41 +1,41 @@
-const SITE = "https://quranstudio.cyou";
-const OG_IMAGE = `${SITE}/quran-studio.png`;
+import { DEFAULT_SEO, SITE_URL, type SeoProps } from "../config/seo";
 
 interface SeoInput {
-  title: string;
-  description: string;
-  /** URL path, e.g. "/download" */
+  /** Page-specific title; falls back to the site default */
+  title?: string;
+  /** Page-specific description; falls back to the site default */
+  description?: string;
+  /** URL path, e.g. "/download". Use "/" for the homepage. */
   path: string;
 }
 
-/** Builds the full SEO prop set expected by src/layouts/Layout.astro */
-export function seo({ title, description, path }: SeoInput) {
-  const url = `${SITE}${path}`;
+/**
+ * Builds the full SEO prop set expected by src/layouts/Layout.astro.
+ * Everything comes from src/config/seo.ts; per-page title/description/path
+ * only override what they need to.
+ */
+export function seo({ title, description, path }: SeoInput): SeoProps {
+  const cleanPath = path === "/" ? "" : path;
+  const url = `${SITE_URL}${cleanPath}`;
   return {
-    title,
-    description,
-    themeColor: "#0a0a0a",
+    ...DEFAULT_SEO,
+    title: title ?? DEFAULT_SEO.title,
+    description: description ?? DEFAULT_SEO.description,
     canonicalUrl: url,
     canonicalUrlen: url,
-    canonicalUrlur: `${SITE}/ur${path}`,
+    canonicalUrlur: `${SITE_URL}/ur${cleanPath}`,
     canonicalUrldefault: url,
-    ogtitle: title,
-    ogdescription: description,
+    ogtitle: title ?? DEFAULT_SEO.ogtitle,
+    ogdescription: description ?? DEFAULT_SEO.ogdescription,
     ogurl: url,
-    ogsitename: "Quran Studio",
-    oglocale: "en_US",
-    ogtype: "website",
-    ogupdatedtime: "2026-10-17T00:00:00Z",
-    ogimage: OG_IMAGE,
-    ogimagealt: title,
-    ogimagetype: "image/png",
-    ogimagewidth: "1920",
-    ogimageheight: "1038",
-    oglocalealternate: "ur_PK",
-    twittercard: "summary_large_image",
-    twittertitle: title,
-    twitterdescription: description,
-    twitterimage: OG_IMAGE,
-    twitterimagealt: title,
+    ogimagealt: title ?? DEFAULT_SEO.ogimagealt,
+    twittertitle: title ?? DEFAULT_SEO.twittertitle,
+    twitterdescription: description ?? DEFAULT_SEO.twitterdescription,
+    twitterimagealt: title ?? DEFAULT_SEO.twitterimagealt,
   };
+}
+
+/** SEO props for the homepage — pure defaults from src/config/seo.ts. */
+export function homeSeo(): SeoProps {
+  return seo({ path: "/" });
 }
