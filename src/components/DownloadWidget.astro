@@ -1,0 +1,128 @@
+---
+// Download widget: fetches the latest GitHub release and renders
+// download buttons for every platform (Windows / macOS / Linux).
+// The visitor's OS group is shown first and highlighted.
+---
+
+<div id="qs-download" class="dl-widget">
+  <p class="dl-widget-version">Loading latest version…</p>
+  <div class="dl-widget-groups"></div>
+  <p class="dl-widget-error" hidden></p>
+</div>
+
+<script>
+  (function () {
+    var OWNER = "DashingMZA";
+    var REPO = "quran-studio";
+
+    var root = document.getElementById("qs-download");
+    if (!root) return;
+    var versionEl = root.querySelector(".dl-widget-version");
+    var groupsEl = root.querySelector(".dl-widget-groups");
+    var errorEl = root.querySelector(".dl-widget-error");
+
+    function detectOS() {
+      var ua = navigator.userAgent;
+      if (/Windows/i.test(ua)) return "windows";
+      if (/Macintosh|Mac OS X/i.test(ua)) return "macos";
+      if (/Linux/i.test(ua)) return "linux";
+      return "unknown";
+    }
+
+    // Map Tauri asset filenames -> { os, label }
+    function classify(name) {
+      var n = name.toLowerCase();
+      if (n.endsWith(".sig") || n === "latest.json") return null;
+      if (n.endsWith(".msi")) return { os: "windows", label: ".msi Installer" };
+      if (n.endsWith("-setup.exe") || n.endsWith(".exe"))
+        return { os: "windows", label: ".exe Installer" };
+      if (n.includes("aarch64") && n.endsWith(".dmg"))
+        return { os: "macos", label: ".dmg (Apple Silicon)" };
+      if (n.endsWith(".dmg")) return { os: "macos", label: ".dmg (Intel)" };
+      if (n.endsWith(".app.tar.gz")) return null; // updater-only, skip
+      if (n.endsWith(".appimage")) return { os: "linux", label: ".AppImage" };
+      if (n.endsWith(".deb")) return { os: "linux", label: ".deb Package" };
+      if (n.endsWith(".rpm")) return { os: "linux", label: ".rpm Package" };
+      return null;
+    }
+
+    var OS_META = {
+      windows: { title: "Windows", icon: "🪟" },
+      macos: { title: "macOS", icon: "🍎" },
+      linux: { title: "Linux", icon: "🐧" },
+    };
+
+    function showError() {
+      versionEl.textContent = "";
+      errorEl.hidden = false;
+      errorEl.innerHTML =
+        'Could not load download links. <a href="https://github.com/' +
+        OWNER + "/" + REPO + '/releases/latest">Get them from GitHub Releases</a>.';
+    }
+
+    fetch("https://api.github.com/repos/" + OWNER + "/" + REPO + "/releases/latest")
+      .then(function (r) {
+        if (!r.ok) throw new Error("release fetch failed");
+        return r.json();
+      })
+      .then(function (release) {
+        var tag = release.tag_name || "";
+        versionEl.textContent = "Latest version: " + tag;
+
+        var assets = (release.assets || [])
+          .map(function (a) {
+            var info = classify(a.name);
+            return info
+              ? { url: a.browser_download_url, os: info.os, label: info.label }
+              : null;
+          })
+          .filter(Boolean);
+
+        if (!assets.length) {
+          showError();
+          return;
+        }
+
+        var myOS = detectOS();
+        var order = ["windows", "macos", "linux"].sort(function (a, b) {
+          if (a === myOS) return -1;
+          if (b === myOS) return 1;
+          return 0;
+        });
+
+        order.forEach(function (os) {
+          var files = assets.filter(function (a) { return a.os === os; });
+          if (!files.length) return;
+
+          var group = document.createElement("div");
+          group.className = "dl-os-group" + (os === myOS ? " dl-os-yours" : "");
+
+          var head = document.createElement("div");
+          head.className = "dl-os-head";
+          head.innerHTML =
+            "<span>" + OS_META[os].icon + " " + OS_META[os].title + "</span>" +
+            (os === myOS ? '<span class="dl-os-badge">Your OS</span>' : "");
+          group.appendChild(head);
+
+          var btns = document.createElement("div");
+          btns.className = "dl-os-btns";
+          files.forEach(function (f) {
+            var a = document.createElement("a");
+            a.href = f.url;
+            a.className = "btn " + (os === myOS ? "btn-primary" : "btn-ghost");
+            a.innerHTML =
+              '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+              'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>' +
+              '<polyline points="7 10 12 15 17 10"/>' +
+              '<line x1="12" y1="15" x2="12" y2="3"/></svg>' +
+              "<span>Download " + f.label + "</span>";
+            btns.appendChild(a);
+          });
+          group.appendChild(btns);
+          groupsEl.appendChild(group);
+        });
+      })
+      .catch(showError);
+  })();
+</script>

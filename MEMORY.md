@@ -22,3 +22,8 @@
   /about, /contact, /privacy-policy, /terms-of-use. New src/lib/seo.ts helper
   builds the full SEO prop set for Layout. Nav/Footer now link pages. Owner's
   rework (aa318d0, 2c75dba) synced first; only new/edited-by-agent files pushed.
+- **2026-10-17:** Download widget (owner request, based on his Manzil widget):
+  new DownloadWidget.astro fetches latest GitHub release via public API and
+  renders ALL platform buttons grouped by OS (Windows .exe/.msi, macOS
+  Apple Silicon/Intel .dmg, Linux .AppImage/.deb/.rpm); visitor's OS first +
+  highlighted. Download.astro rewritten to use it; Hero version bumped to v1.0.1.

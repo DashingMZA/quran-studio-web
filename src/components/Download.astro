@@ -1,33 +1,22 @@
+---
+import DownloadWidget from "./DownloadWidget.astro";
+---
+
 <section id="download" class="section download">
   <div class="container">
     <h2 class="section-title">Start Creating Today</h2>
     <p class="section-sub">
-      Download Quran Studio for Windows.<br />
+      Download Quran Studio for your platform.<br />
       Open source and free forever.
     </p>
 
-    <div class="dl-card">
-      <div class="dl-icon" aria-hidden="true">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-          <polyline points="7 10 12 15 17 10" />
-          <line x1="12" y1="15" x2="12" y2="3" />
-        </svg>
-      </div>
-      <h3>Quran Studio for Windows</h3>
-      <p class="dl-version">Latest Version: 1.0.0</p>
-      <a
-        href="https://github.com/DashingMZA/quran-studio/releases/latest"
-        target="_blank"
-        rel="noopener"
-        class="btn btn-primary btn-lg"
-      >
-        Download v1.0.0
-      </a>
-      <p class="dl-meta">Windows 10 / 11 &bull; 64-bit &bull; Free &bull; Open source (GPL-3.0)</p>
-    </div>
+    <DownloadWidget />
 
-    <div class="note">
+    <p class="dl-meta" style="margin-top: 1.5rem">
+      Free &bull; Open source (GPL-3.0) &bull; No account needed
+    </p>
+
+    <div class="note" style="margin-top: 2rem">
       <h4>⚠️ Installation Note</h4>
       <p>
         Since this is a new open-source application, Windows SmartScreen may
