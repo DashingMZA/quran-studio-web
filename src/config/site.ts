@@ -46,6 +46,11 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
 /** Google Analytics 4 measurement ID — paste your ID here (e.g. "G-XXXXXXXXXX"). Empty = no tracking. */
 export const GA_ID = "";
 
+// ---------- ads.txt ----------
+// Paste your ads.txt content here (e.g. "google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0").
+// Empty = /ads.txt returns 404. One entry per line.
+export const ADS_TXT = ``;
+
 // ---------- Webmaster-tools verification ----------
 // Paste each code; empty = tag omitted.
 export const SITE_VERIFICATION = {

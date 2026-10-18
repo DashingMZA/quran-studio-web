@@ -65,3 +65,9 @@
   /icons/quran-studio-logo-dark.svg image (replacing inline SVG/text);
   SOCIALS in src/config/site.ts filled with owner's LinkedIn/Instagram/
   Facebook/TikTok/X URLs; social icons render in footer from config.
+
+## 2026-10-18 — dynamic txt/xml routes
+- sitemap.xml, robots.txt, llms.txt, ads.txt ab dynamic Astro routes hain
+  (src/pages/*.ts), rss.xml.ts ki tarah. Static public/ files hata diye.
+- ads.txt ka content src/config/site.ts ke ADS_TXT variable se aata hai —
+  khaali ho to 404. site.ts single source of truth hai.
