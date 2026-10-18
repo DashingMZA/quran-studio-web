@@ -1091,10 +1091,10 @@ a.logo {
 .alt-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 .alt-list .btn svg {
   flex-shrink: 0;
