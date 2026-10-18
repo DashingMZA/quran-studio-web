@@ -1,13 +1,17 @@
 ---
 import { APP_URL, GITHUB_REPO } from "../config/site";
+
+// GitHub Releases API — hero version badge auto-updates on every new release.
+// The hardcoded v1.0.1 below is only a fallback if the API is unreachable.
+const RELEASE_API = GITHUB_REPO.replace("github.com", "api.github.com/repos") + "/releases/latest";
 ---
 
 <section class="hero">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <div class="version-badge">
+    <div class="version-badge" data-release-api={RELEASE_API}>
       <span class="dot"></span>
-      v1.0.1
+      <span class="version-text">v1.0.1</span>
     </div>
     <h1 class="hero-title">
       <span class="brand-quran">Quran</span> <span class="brand-studio">Studio</span>
@@ -45,3 +49,19 @@ import { APP_URL, GITHUB_REPO } from "../config/site";
     <p class="hero-note">Open source &amp; free forever &bull; No account needed</p>
   </div>
 </section>
+
+<script>
+  // Auto-update the hero version badge from the latest GitHub release.
+  (function () {
+    var badge = document.querySelector("[data-release-api]");
+    if (!badge) return;
+    var text = badge.querySelector(".version-text");
+    if (!text) return;
+    fetch(badge.getAttribute("data-release-api"))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (rel && rel.tag_name) text.textContent = rel.tag_name;
+      })
+      .catch(function () { /* keep hardcoded fallback */ });
+  })();
+</script>
