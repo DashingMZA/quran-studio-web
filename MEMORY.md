@@ -82,3 +82,8 @@
   image chahiye thi. Seekha: sawal != directive, pehle confirm karo.
 - SOCIAL_IMAGE ab `${SITE_URL}/screenshots/quran-studio.png` (absolute URL).
   Image quran-studio repo se li. Har page share pe yehi image jayegi.
+
+## 2026-10-18 — schema.org JSON-LD
+- src/lib/StructuredData.astro banaya: WebSite + SoftwareApplication +
+  Organization JSON-LD, sab site.ts se. Layout mein include hai to har page
+  pe render hota hai.

@@ -1,5 +1,6 @@
 ---
-import { SITE_NAME, SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE } from "../config/site";
+import { SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE } from "../config/site";
+import StructuredData from "../lib/StructuredData.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 
 interface Props {
@@ -89,6 +90,9 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
 
     {/* llms.txt for AI agents & crawlers */}
     <link rel="alternate" type="text/plain" title={`${SITE_NAME} — LLM info`} href={`${SITE_URL}/llms.txt`} />
+
+    {/* schema.org structured data */}
+    <StructuredData />
 
     {/* Google Analytics 4 loads only after cookie consent (see CookieConsent.astro).
         Paste your Measurement ID as GA_ID in src/config/site.ts to enable. */}
