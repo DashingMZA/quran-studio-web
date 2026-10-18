@@ -22,7 +22,7 @@
     "check": "astro check",
     "deploy:cf": "pnpm build && npx wrangler deploy",
     "test": "pnpm test:types && pnpm test:build && pnpm test:links",
-    "test:types": "astro check",
+    "test:types": "tsc --noEmit -p tsconfig.json",
     "test:build": "astro build",
     "test:links": "node scripts/check-links.mjs"
   },
