@@ -986,17 +986,31 @@ a.logo {
 }
 
 /* ---- download cards ---- */
+.dl-os-group {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  margin-top: 1.5rem;
+}
+.dl-os-yours {
+  border-color: var(--green-dark);
+  box-shadow: 0 0 0 1px var(--green-dark);
+}
 .dl-os-btns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.1rem;
   margin-top: 1.25rem;
 }
 .dl-card {
-  background: var(--bg-soft);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   padding: 1.75rem 1.25rem;
+  width: 210px;
+  flex: 0 0 210px;
   display: flex;
   flex-direction: column;
   align-items: center;
