@@ -1,49 +1,125 @@
 ---
 const shots = [
   {
+    src: "/screenshots/app-editor.png",
+    alt: "Quran Studio editor",
+    title: "Editor",
+    text: "Pick verses, choose a reciter, style everything live.",
+  },
+  {
+    src: "/screenshots/app-about.png",
+    alt: "About dialog",
+    title: "About",
+    text: "Version info, updates and links — one click away.",
+  },
+  {
+    src: "/screenshots/app-settings.png",
+    alt: "Download settings",
+    title: "Export Settings",
+    text: "MP4 (H.264), High 1080p, AAC audio — configured once.",
+  },
+  {
     src: "/screenshots/app-full.png",
     alt: "Quran Studio full editor",
-    title: "Full Editor",
-    text: "Selection, preview and styling — everything in one window.",
-  },
-  {
-    src: "/screenshots/app-preview.png",
-    alt: "Video preview with verses",
-    title: "Live Preview",
-    text: "See every verse beautifully typeset as you style it.",
-  },
-  {
-    src: "/screenshots/app-selection.png",
-    alt: "Surah and reciter selection",
-    title: "Pick Verses & Reciter",
-    text: "Any surah, any verse range, famous reciters.",
-  },
-  {
-    src: "/screenshots/app-styling.png",
-    alt: "Styling panel",
-    title: "Style Everything",
-    text: "Typography, colors, positions — full control.",
+    title: "Full View",
+    text: "Selection, preview and styling in one window.",
   },
 ];
 ---
 
-<section class="section screenshots">
+<section class="section shots-section">
   <div class="container">
     <p class="kicker">Take a tour</p>
     <h2 class="section-title">See the app in action</h2>
     <p class="section-sub">
-      A look inside Quran Studio — from verse selection to the final video.
+      A look inside Quran Studio — click through or sit back and watch.
     </p>
-    <div class="shot-grid">
-      {shots.map((s, i) => (
-        <figure class={"shot" + (i === 0 ? " shot-wide" : "")}>
-          <img src={s.src} alt={s.alt} loading="lazy" />
-          <figcaption>
-            <strong>{s.title}</strong>
-            <span>{s.text}</span>
-          </figcaption>
-        </figure>
-      ))}
+    <div class="shots-carousel" id="qs-shots">
+      <div class="shots-main">
+        <img
+          src={shots[0].src}
+          alt={shots[0].alt}
+          id="qs-shot-img"
+          loading="eager"
+        />
+        <div class="shots-caption">
+          <strong id="qs-shot-title">{shots[0].title}</strong>
+          <span id="qs-shot-text">{shots[0].text}</span>
+        </div>
+      </div>
+      <div class="shots-thumbs" role="tablist" aria-label="App screenshots">
+        {shots.map((s, i) => (
+          <button
+            class={"shot-thumb" + (i === 0 ? " active" : "")}
+            data-idx={i}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+            aria-label={s.title}
+          >
+            <img src={s.src} alt="" loading="lazy" aria-hidden="true" />
+            <span>{s.title}</span>
+          </button>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script define:vars={{ shots }}>
+  (function () {
+    var root = document.getElementById("qs-shots");
+    if (!root) return;
+    var img = document.getElementById("qs-shot-img");
+    var titleEl = document.getElementById("qs-shot-title");
+    var textEl = document.getElementById("qs-shot-text");
+    var thumbs = Array.prototype.slice.call(
+      root.querySelectorAll(".shot-thumb")
+    );
+    var idx = 0;
+    var timer = null;
+    var DELAY = 4000;
+
+    function show(i) {
+      idx = (i + shots.length) % shots.length;
+      var s = shots[idx];
+      img.style.opacity = "0";
+      setTimeout(function () {
+        img.src = s.src;
+        img.alt = s.alt;
+        titleEl.textContent = s.title;
+        textEl.textContent = s.text;
+        img.style.opacity = "1";
+      }, 180);
+      thumbs.forEach(function (t, j) {
+        t.classList.toggle("active", j === idx);
+        t.setAttribute("aria-selected", j === idx ? "true" : "false");
+      });
+    }
+
+    function next() {
+      show(idx + 1);
+    }
+    function restart() {
+      stop();
+      timer = setInterval(next, DELAY);
+    }
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    thumbs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        show(parseInt(t.getAttribute("data-idx"), 10));
+        restart();
+      });
+    });
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", restart);
+
+    restart();
+  })();
+</script>
