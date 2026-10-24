@@ -5,24 +5,28 @@
 const shots = [
   {
     src: "/screenshots/app-editor.webp",
+    thumb: "/screenshots/app-editor-thumb.webp",
     alt: "Quran Studio editor",
     title: "Editor",
     text: "Pick verses, choose a reciter, style everything live.",
   },
   {
     src: "/screenshots/app-about.webp",
+    thumb: "/screenshots/app-about-thumb.webp",
     alt: "About dialog",
     title: "About",
     text: "Version info, updates and links — one click away.",
   },
   {
     src: "/screenshots/app-settings.webp",
+    thumb: "/screenshots/app-settings-thumb.webp",
     alt: "Download settings",
     title: "Export Settings",
     text: "MP4 (H.264), High 1080p, AAC audio — configured once.",
   },
   {
     src: "/screenshots/app-full.webp",
+    thumb: "/screenshots/app-full-thumb.webp",
     alt: "Quran Studio full editor",
     title: "Full View",
     text: "Selection, preview and styling in one window.",
@@ -60,7 +64,7 @@ const shots = [
             aria-pressed={i === 0 ? "true" : "false"}
             aria-label={"Show " + s.title + " screenshot"}
           >
-            <img src={s.src} alt={s.alt} width="1280" height="720" loading="lazy" decoding="async" />
+            <img src={s.thumb} alt={s.alt} width="64" height="40" loading="lazy" decoding="async" />
             <span>{s.title}</span>
           </button>
         ))}

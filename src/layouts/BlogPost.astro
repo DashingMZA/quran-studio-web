@@ -40,6 +40,8 @@ const dateStr = pubDate.toLocaleDateString("en-US", {
           heroImage && (
             <img
               src={heroImage}
+              srcset={heroImage.replace(".jpg", "-600.jpg") + " 600w, " + heroImage + " 1200w"}
+              sizes="(max-width: 640px) 600px, 780px"
               alt={title}
               class="blog-hero"
               width="1200"

@@ -193,3 +193,31 @@
 - Local build verified: 24 pages, koi missing local asset nahi (icons
   ke favicon files sirf local copy mein missing hain, remote par
   maujood hain), har page ka exactly ek <html> root hai.
+
+## 2026-10-24 — PageSpeed round 2 (CLS diagnosis + contrast/link fixes)
+- PSI diagnosis (live, round-1 version): Performance drop ki asli wajah
+  CLS thi, na ke images ya AdSense. Mobile: FCP 3.2s, LCP 4.0s, TBT
+  0ms, CLS 0.654; Desktop: FCP 0.8s, LCP 0.9s, TBT 0ms, CLS 0.731.
+  AdSense third-party sirf 71ms main-thread tha; render-blocking CSS
+  sirf 5.7 KB tha. CLS ka sab se bara source DownloadWidget hai: GitHub
+  API fetch ke baad widget ~80px se ~500px tak phailta hai aur neeche
+  ka page dhakel deta hai.
+- Fix: .dl-widget ko reserved height mili (desktop 480px, mobile
+  560px — mobile par buttons stack hote hain) taake widget aane par
+  neeche ka content na hile.
+- Contrast: --green-dark #16a34a -> #15803d (white text ratio 3.3 se
+  5.0 hua); .btn-primary:hover #166534; .req-tab.active ab bright
+  green (#22c55e, ratio 2.3) ki jagah dark green use karta hai.
+- Identical links: DownloadWidget ke har "Download" button ko ab
+  aria-label mila hai ("Download for Windows (.msi Installer)" waghera)
+  — pehle sab links ka naam ek jaisa tha magar manzil alag thi.
+- Prose links: ab #4ade80 + bold + underline (sirf rang par inhisar
+  khatam).
+- Responsive images: blog covers ke 600px variants (28-43 KB) aur
+  srcset (cards + hero); screenshot thumbs ke 160px WebP variants
+  (0.5-1.4 KB, pehle 10-39 KB).
+- vercel.json: Cross-Origin-Opener-Policy: same-origin header add hua
+  (PSI ka COOP audit). Baqi Best Practices audits (CSP unsafe-inline,
+  HSTS includeSubDomains, Trusted Types, Baseline) ke liye bari refactor
+  chahiye (inline scripts/styles ko external karna) — wo agla step hai,
+  is batch mein nahi.

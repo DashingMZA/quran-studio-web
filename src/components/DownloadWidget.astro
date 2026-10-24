@@ -167,6 +167,9 @@ import { GITHUB_RELEASES } from "../config/site";
             a.href = f.url;
             a.className = "btn " + (os === myOS ? "btn-primary" : "btn-ghost");
             a.textContent = "Download";
+            // Every card said only "Download" with a different destination,
+            // which PageSpeed flagged as identical links, different purpose.
+            a.setAttribute("aria-label", "Download for " + OS_META[os].title + " (" + f.label + ")");
             card.appendChild(a);
             btns.appendChild(card);
           });
