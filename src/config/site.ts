@@ -44,16 +44,21 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
   { name: "LinkedIn", url: "https://www.linkedin.com/in/mzaheera/", icon: "/social_media/linkedin.svg",},
 ];
 
-// ---------- AdSense ----------
-// Your AdSense publisher ID (e.g. "ca-pub-XXXXXXXXXXXXXXXX"). Empty = no script.
-export const ADSENSE_CLIENT = "ca-pub-8198067510150459";
-
 // ---------- Social preview image ----------
 // URL of the image shown when sharing links on Facebook/X.
 // Must be an absolute URL. Empty = no image in link previews.
 export const SOCIAL_IMAGE = `${SITE_URL}/screenshots/quran-studio.png`;
 /** Google Analytics 4 measurement ID — paste your ID here (e.g. "G-XXXXXXXXXX"). Empty = no tracking. */
 export const GA_ID = "G-0X473QG59M";
+
+// ---------- Google AdSense ----------
+// Publisher client ID (looks like "ca-pub-XXXXXXXXXXXXXXXX") from
+// AdSense → Account → Settings → Account information. Empty = the
+// AdSense script is not loaded. BaseHead puts the script in the head
+// of every public page (never on admin/account/checkout/auth pages).
+// NOTE: the ads.txt line in ADS_TXT above must carry the SAME
+// publisher number, or AdSense cannot verify the site.
+export const ADSENSE_CLIENT = "ca-pub-8198067510150459";
 
 // ---------- ads.txt ----------
 // Paste your ads.txt content here (e.g. "google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0").

@@ -81,15 +81,6 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
 
     {/* Webmaster-tools verification (codes live in src/config/site.ts) */}
     {SITE_VERIFICATION.google && <meta name="google-site-verification" content={SITE_VERIFICATION.google} />}
-
-    {/* Google AdSense (client ID lives in src/config/site.ts) */}
-    {ADSENSE_CLIENT && (
-      <script
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-        crossorigin="anonymous"
-      />
-    )}
     {SITE_VERIFICATION.bing && <meta name="msvalidate.01" content={SITE_VERIFICATION.bing} />}
     {SITE_VERIFICATION.pinterest && <meta name="p:domain_verify" content={SITE_VERIFICATION.pinterest} />}
     {SITE_VERIFICATION.yandex && <meta name="yandex-verification" content={SITE_VERIFICATION.yandex} />}
@@ -105,6 +96,15 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
 
     {/* Google Analytics 4 loads only after cookie consent (see CookieConsent.astro).
         Paste your Measurement ID as GA_ID in src/config/site.ts to enable. */}
+
+    {/* Google AdSense (client ID lives in src/config/site.ts) */}
+    {ADSENSE_CLIENT && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+        crossorigin="anonymous"
+      />
+    )}
 
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
     <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96"/>
