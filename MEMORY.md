@@ -267,3 +267,26 @@
   ~2.5 hai to 362px display ke liye ~905px chahiye, is liye browser
   sahi taur par 1280w hi chun raha hai. Ye flag CSS size par based
   hai, DPR ignore karta hai — is ke peeche bhagna bekaar hai.
+
+## Best Practices: CSP console error fix (2026-10-24, pushed <pending>)
+- PSI detail (round-3 run) mein "Browser errors were logged to the
+  console" + "Issues were logged in DevTools" — dono ki ek hi wajah:
+  AdSense ka show_ads_impl script https://ep1.adtrafficquality.google
+  (Google ka ad-traffic-quality/fraud-check endpoint) se connect karna
+  chahta hai, aur CSP connect-src mein wo domain nahi tha, to browser
+  ne request block kar di.
+- Fix: vercel.json CSP connect-src mein
+  https://*.adtrafficquality.google add kiya (wildcard taake ep1 ke
+  saath koi aur ep* endpoint bhi cover ho). Sirf connect-src — ye
+  koi naya script ya ad nahi laata, sirf AdSense ke apne fraud-check
+  ko allow karta hai. Is se BP ke ye 2 audits theek hone chahiye;
+  baqi BP audits (CSP unsafe-inline, HSTS, Trusted Types, Baseline)
+  abhi bhi baqi hain.
+- Image-delivery flag (35 KB) ka note: carousel img par srcset sahi
+  hai (640w variant maujood), lekin PSI phone ka DPR (~2.6) ignore
+  kar ke sirf CSS size (362px) dekhta hai — browser 362x2.6=~940px
+  ke liye sahi taur par 1280w chun raha hai. 362w file dene se image
+  blurry ho jayegi; is flag ke peeche bhagna quality kharab karega,
+  is liye ise chheda nahi.
+- Render-blocking: sirf apni 5.8 KB CSS, 150 ms — inline karne se
+  caching khatam hogi, faida na hone ke barabar hai; chheda nahi.
