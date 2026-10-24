@@ -138,3 +138,10 @@
   2048×1152). NOTE: media-generation-*.json sidecars in public/blog/
   are pipeline metadata — do NOT push them.
 - Build verified locally: 24 pages, sitemap has all 10 blog URLs.
+
+## 2026-10-24 — cookie banner position fix
+- Banner ki koi CSS nahi thi, is liye wo page ke upar dikh raha tha.
+  Pehle full-width bottom bar banaya, phir owner ne popup style manga —
+  ab .consent ek floating card popup hai (bottom-left corner, rounded,
+  shadow, dark green bg). [hidden] par display: none rakha taake JS
+  toggle kaam kare.

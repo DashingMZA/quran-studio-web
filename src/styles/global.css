@@ -1204,3 +1204,41 @@ a.logo {
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
+
+/* ---- cookie consent popup (floating card, bottom-left) ---- */
+.consent[hidden] {
+  display: none;
+}
+.consent {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 1000;
+  max-width: 380px;
+  background: #0d1f14;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+}
+.consent p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+.consent p a {
+  color: var(--green);
+}
+.consent-btns {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+@media (max-width: 640px) {
+  .consent {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: none;
+  }
+}
