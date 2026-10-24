@@ -1,6 +1,11 @@
 ---
 import {SITE_NAME} from "../config/site";
 
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+
 const features = [
   {
     icon: "📖",
@@ -58,7 +63,7 @@ const features = [
       simplicity — one window, from verse selection to finished video.
     </p>
     <div class="grid">
-      {features.map((f) => (
+      {(compact ? features.slice(0, 6) : features).map((f) => (
         <div class="card">
           <div class="card-icon">{f.icon}</div>
           <h3>{f.title}</h3>
@@ -66,5 +71,10 @@ const features = [
         </div>
       ))}
     </div>
+    {compact && (
+      <div style="text-align: center; margin-top: 2rem">
+        <a href="/features" class="btn btn-ghost">See all features →</a>
+      </div>
+    )}
   </div>
 </section>

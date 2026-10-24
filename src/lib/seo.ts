@@ -28,7 +28,6 @@ export function seo({ title, description, path }: SeoInput): SeoProps {
     description: description ?? DEFAULT_SEO.description,
     canonicalUrl: url,
     canonicalUrlen: url,
-    canonicalUrlur: `${SITE_URL}/ur${cleanPath}`,
     canonicalUrldefault: url,
     ogtitle: title ?? DEFAULT_SEO.ogtitle,
     ogdescription: description ?? DEFAULT_SEO.ogdescription,

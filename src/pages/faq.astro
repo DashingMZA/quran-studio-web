@@ -53,7 +53,7 @@ const faqs = [
 
 <Layout
   {...seo({
-    title: "FAQ — " + SITE_NAME,
+    title: "FAQ — " + SITE_NAME + " Questions Answered | Free & Open Source",
     description:
       "Frequently asked questions about " +
       SITE_NAME +
@@ -70,13 +70,39 @@ const faqs = [
         <div class="faq-list">
           {
             faqs.map((f) => (
-              <details class="faq-item">
-                <summary>{f.q}</summary>
+              <div class="faq-item">
+                <h2 class="faq-q">{f.q}</h2>
                 <p>{f.a}</p>
-              </details>
+              </div>
             ))
           }
         </div>
+        <script>
+          (function () {
+            document.querySelectorAll(".faq-item").forEach(function (item) {
+              var q = item.querySelector(".faq-q");
+              var a = item.querySelector("p");
+              if (!q || !a) return;
+              a.hidden = true;
+              q.style.cursor = "pointer";
+              q.addEventListener("click", function () {
+                a.hidden = !a.hidden;
+              });
+            });
+          })();
+        </script>
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          })}
+        />
         <div style="text-align: center; margin-top: 3rem">
           <p class="section-sub">Still stuck?</p>
           <a href="/contact" class="btn btn-ghost">Contact Us</a>

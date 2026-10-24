@@ -1,4 +1,6 @@
 ---
+import { GITHUB_RELEASES } from "../config/site";
+
 // Download widget: fetches the latest GitHub release and renders
 // download buttons for every platform (Windows / macOS / Linux).
 // The visitor's OS group is shown first and highlighted.
@@ -8,6 +10,11 @@
   <p class="dl-widget-version">Loading latest version…</p>
   <div class="dl-widget-groups"></div>
   <p class="dl-widget-error" hidden></p>
+  <noscript>
+    <p style="text-align: center; margin-top: 1rem">
+      <a href={GITHUB_RELEASES} class="btn btn-primary">Download from GitHub Releases</a>
+    </p>
+  </noscript>
 </div>
 
 <script>

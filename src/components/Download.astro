@@ -12,7 +12,7 @@ import DownloadWidget from "./DownloadWidget.astro";
       <DownloadWidget />
 
       <div class="note dl-note" id="qs-install-note">
-        <h4>⚠️ Installation Note</h4>
+        <h3>⚠️ Installation Note</h3>
         <p data-note="windows">Since this is a new open-source application, Windows SmartScreen may flag it as unrecognized. This is normal for software without a paid certificate. You can safely click <strong>"More info"</strong> and <strong>"Run anyway"</strong> to proceed.</p>
         <p data-note="macos" hidden>Since this is a new open-source application, macOS Gatekeeper may block it as coming from an unidentified developer. To open it, right-click the <strong>.dmg</strong> file and choose <strong>"Open"</strong>, then confirm. This is normal for software without a paid Apple certificate.</p>
         <p data-note="linux" hidden>For the <strong>.AppImage</strong>, make it executable first: <strong><code>chmod +x *.AppImage</code></strong> then double-click to run. For <strong>.deb</strong> use <strong><code>sudo dpkg -i</code></strong>, and for <strong>.rpm</strong> use <strong><code>sudo rpm -i</code></strong>.</p>

@@ -97,3 +97,17 @@
 - Nav/Footer logos aur Screenshots thumbnails mein alt="" tha jo scanner flag
   kar raha tha. Sab ko descriptive alt diya: logo = "Quran Studio logo",
   thumbnails = shot ka alt text.
+
+## 2026-10-24 — on-page SEO fix batch (audit follow-up)
+- Domain: code already .bond (SITE_URL); README .cyou → .bond. NOTE: .cyou
+  deployment itself still live — needs Vercel redirect to .bond (owner action).
+- /ur hreflang + canonicalUrlur removed from Layout + seo.ts (page 404s).
+- Installation Note H4 → H3 (Download component, home + download pages).
+- FAQ: questions now H2 (click accordion) + FAQPage JSON-LD.
+- Titles lengthened: Features/HowItWorks/About/Contact/Disclaimer/Sitemap/
+  Terms/Privacy/FAQ + Download now "Windows, macOS & Linux".
+- Home: Features compact (6 cards + "See all features" link) to cut verbatim
+  duplication with /features.
+- DownloadWidget: noscript fallback link to GitHub Releases for crawlers.
+- Privacy H1 + Terms brand suffix already in repo (audit saw stale live site).
+- "Additional Details" boilerplate not in repo — stale live deployment only.

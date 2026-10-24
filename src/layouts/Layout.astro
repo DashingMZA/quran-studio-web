@@ -9,7 +9,6 @@ interface Props {
   themeColor: string;
   canonicalUrl: string;
   canonicalUrlen: string;
-  canonicalUrlur: string;
   canonicalUrldefault: string;
   ogtitle: string;
   ogdescription: string;
@@ -31,7 +30,7 @@ interface Props {
   twitterimagealt: string;
 }
 
-const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalUrlur, canonicalUrldefault, ogtitle, ogdescription, ogurl, ogsitename, oglocale, ogtype, ogupdatedtime, ogimage, ogimagealt, ogimagetype, ogimagewidth, ogimageheight, oglocalealternate, twittercard, twittertitle, twitterdescription, twitterimage, twitterimagealt } = Astro.props;
+const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalUrldefault, ogtitle, ogdescription, ogurl, ogsitename, oglocale, ogtype, ogupdatedtime, ogimage, ogimagealt, ogimagetype, ogimagewidth, ogimageheight, oglocalealternate, twittercard, twittertitle, twitterdescription, twitterimage, twitterimagealt } = Astro.props;
 ---
 
 <!doctype html>
@@ -47,7 +46,6 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrlen} />
-    <link rel="alternate" hreflang="ur" href={canonicalUrlur} />
     <link rel="alternate" hreflang="x-default" href={canonicalUrldefault} />
 
     <meta property="og:title" content={ogtitle} />

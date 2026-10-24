@@ -5,7 +5,7 @@ built with Astro 7 (static). A multi-page site: home, features, how-it-works,
 download, FAQ, about, contact, plus legal pages (privacy, terms, disclaimer),
 sitemap, RSS feed, and custom 404/500 pages.
 
-Live: **https://quranstudio.cyou**
+Live: **https://quranstudio.bond**
 
 ## Quick start
 
@@ -45,7 +45,7 @@ CI (`.github/workflows/ci.yml`) runs `pnpm test` on every push and PR.
 ## Deploy
 
 **Vercel** (primary) — import the repo, framework preset `Astro`.
-`vercel.json` handles: `vercel.app` → `quranstudio.cyou` redirect (no duplicate
+`vercel.json` handles: `vercel.app` → `quranstudio.bond` redirect (no duplicate
 content), security headers (CSP, X-Frame-Options, Referrer-Policy), and
 long-term caching for hashed static assets.
 
