@@ -1,0 +1,77 @@
+---
+import { SITE_NAME } from "../config/site";
+import Layout from "./Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { seo } from "../lib/seo";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  heroImage?: string;
+  slug: string;
+  related: { slug: string; title: string }[];
+}
+
+const { title, description, pubDate, heroImage, slug, related } = Astro.props;
+const dateStr = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout
+  {...seo({
+    title: title + " | " + SITE_NAME + " Blog",
+    description,
+    path: "/blog/" + slug,
+  })}
+>
+  <Nav />
+  <main>
+    <article class="section">
+      <div class="container prose">
+        <p class="blog-back"><a href="/blog">← All articles</a></p>
+        <h1 class="section-title">{title}</h1>
+        <p class="section-sub">{dateStr} · {SITE_NAME} Blog</p>
+        {
+          heroImage && (
+            <img
+              src={heroImage}
+              alt={title}
+              class="blog-hero"
+              width="1200"
+              height="630"
+            />
+          )
+        }
+        <div class="prose-body blog-body">
+          <slot />
+        </div>
+        {
+          related.length > 0 && (
+            <div class="blog-related">
+              <h2>Keep reading</h2>
+              <ul>
+                {related.map((r) => (
+                  <li>
+                    <a href={"/blog/" + r.slug}>{r.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        <div class="blog-cta">
+          <p>Ready to make your own Quran video?</p>
+          <a href="/download" class="btn btn-primary btn-lg"
+            >Download {SITE_NAME} — Free</a
+          >
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>

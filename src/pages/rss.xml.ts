@@ -1,4 +1,5 @@
 import { SITE_URL, SITE_NAME, AUTHOR_NAME, APP_URL } from "../config/site";
+import { getCollection } from "astro:content";
 
 const pages = [
   { path: "/", title: "Home", description: "Create beautiful Quran recitation videos — free, open source." },
@@ -33,6 +34,21 @@ const items = pages
   .join("\n") + "\n" + appItem;
 
 export async function GET() {
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const blogItems = posts
+    .map(
+      (p) => `    <item>
+      <title>${p.data.title} — ${SITE_NAME} Blog</title>
+      <link>${SITE_URL}/blog/${p.id}</link>
+      <guid>${SITE_URL}/blog/${p.id}</guid>
+      <description>${p.data.description}</description>
+      <pubDate>${p.data.pubDate.toUTCString()}</pubDate>
+    </item>`
+    )
+    .join("\n");
+  const allItems = items + "\n" + blogItems;
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
@@ -40,7 +56,7 @@ export async function GET() {
     <link>${SITE_URL}</link>
     <description>Official site feed for ${SITE_NAME} — free, open-source Quran recitation video creator.</description>
     <language>en-us</language>
-${items}
+${allItems}
   </channel>
 </rss>`;
   return new Response(xml, {

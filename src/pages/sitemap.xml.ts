@@ -1,4 +1,5 @@
 import { SITE_URL, APP_URL } from "../config/site";
+import { getCollection } from "astro:content";
 
 const pages = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
@@ -16,6 +17,17 @@ const pages = [
 
 export async function GET() {
   const today = new Date().toISOString().slice(0, 10);
+  const posts = await getCollection("blog");
+  const blogUrls = posts
+    .map(
+      (p) => `  <url>
+    <loc>${SITE_URL}/blog/${p.id}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`
+    )
+    .join("\n");
   const urls = pages
     .map(
       (p) => `  <url>
@@ -36,6 +48,7 @@ export async function GET() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}
 ${appUrl}
+${blogUrls}
 </urlset>`;
   return new Response(xml, {
     headers: { "Content-Type": "application/xml; charset=utf-8" },

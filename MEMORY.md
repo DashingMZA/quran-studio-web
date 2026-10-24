@@ -118,3 +118,23 @@
   nahi, crawlers + screen readers ko H1 mil gaya.
 - Note: app.quranstudio.bond/ bhi list mein tha — wo web app hai, is repo
   ka hissa nahi, isliye usko nahi chheda.
+
+## 2026-10-24 — blog section launch (AdSense content push)
+- Content collection: src/content.config.ts (glob loader, schema: title,
+  description, pubDate, updatedDate?, heroImage?) — reference format from
+  ZohanZaheer/ytcpm-website src/content/blog.
+- Pages: /blog index (card grid) + /blog/[slug] via BlogPost layout
+  (hero image, date, "Keep reading" related posts, Download CTA).
+- Nav + Footer mein Blog link; sitemap.xml + rss.xml mein blog posts
+  auto-include (getCollection).
+- 10 articles (800-1200 words, high-value keywords, internal links to
+  main pages + cross-links between posts): how-to-make-quran-recitation-
+  videos, best-quran-video-maker-software, how-to-sync-quran-audio-with-
+  text, quran-reels-instagram-tiktok-guide, best-arabic-fonts-quran-
+  videos, how-to-add-urdu-translation-quran-videos, quran-youtube-
+  channel-ideas, ayat-ul-kursi-video-guide, quran-video-backgrounds-
+  ideas, free-vs-paid-quran-video-editors.
+- 10 cover images in public/blog/<slug>.jpg (dark + green site style,
+  2048×1152). NOTE: media-generation-*.json sidecars in public/blog/
+  are pipeline metadata — do NOT push them.
+- Build verified locally: 24 pages, sitemap has all 10 blog URLs.
