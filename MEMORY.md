@@ -87,3 +87,8 @@
 - src/lib/StructuredData.astro banaya: WebSite + SoftwareApplication +
   Organization JSON-LD, sab site.ts se. Layout mein include hai to har page
   pe render hota hai.
+
+## 2026-10-24 — AdSense + verification in head
+- site.ts mein ADSENSE_CLIENT = "ca-pub-8198067510150459" add. Layout head mein
+  AdSense script render hota hai jab ID set ho. Verification (google/bing/
+  pinterest/yandex) pehle se site.ts + head mein tha.

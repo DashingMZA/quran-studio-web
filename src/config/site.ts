@@ -44,6 +44,10 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
   { name: "LinkedIn", url: "https://www.linkedin.com/in/mzaheera/", icon: "/social_media/linkedin.svg",},
 ];
 
+// ---------- AdSense ----------
+// Your AdSense publisher ID (e.g. "ca-pub-XXXXXXXXXXXXXXXX"). Empty = no script.
+export const ADSENSE_CLIENT = "ca-pub-8198067510150459";
+
 // ---------- Social preview image ----------
 // URL of the image shown when sharing links on Facebook/X.
 // Must be an absolute URL. Empty = no image in link previews.

@@ -1,5 +1,5 @@
 ---
-import { SITE_NAME, SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE } from "../config/site";
+import { SITE_NAME, SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE, ADSENSE_CLIENT } from "../config/site";
 import StructuredData from "../lib/StructuredData.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 
@@ -81,6 +81,15 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
 
     {/* Webmaster-tools verification (codes live in src/config/site.ts) */}
     {SITE_VERIFICATION.google && <meta name="google-site-verification" content={SITE_VERIFICATION.google} />}
+
+    {/* Google AdSense (client ID lives in src/config/site.ts) */}
+    {ADSENSE_CLIENT && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+        crossorigin="anonymous"
+      />
+    )}
     {SITE_VERIFICATION.bing && <meta name="msvalidate.01" content={SITE_VERIFICATION.bing} />}
     {SITE_VERIFICATION.pinterest && <meta name="p:domain_verify" content={SITE_VERIFICATION.pinterest} />}
     {SITE_VERIFICATION.yandex && <meta name="yandex-verification" content={SITE_VERIFICATION.yandex} />}
