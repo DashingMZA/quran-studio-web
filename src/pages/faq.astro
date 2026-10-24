@@ -69,10 +69,15 @@ const faqs = [
         <p class="section-sub">Quick answers to common questions.</p>
         <div class="faq-list">
           {
-            faqs.map((f) => (
+            faqs.map((f, i) => (
               <div class="faq-item">
-                <h2 class="faq-q">{f.q}</h2>
-                <p>{f.a}</p>
+                <h2 class="faq-q">
+                  <button type="button" aria-expanded="false" aria-controls={"faq-a-" + i}>
+                    {f.q}
+                    <span aria-hidden="true">+</span>
+                  </button>
+                </h2>
+                <p id={"faq-a-" + i} hidden>{f.a}</p>
               </div>
             ))
           }
@@ -80,13 +85,15 @@ const faqs = [
         <script>
           (function () {
             document.querySelectorAll(".faq-item").forEach(function (item) {
-              var q = item.querySelector(".faq-q");
+              var btn = item.querySelector(".faq-q button");
               var a = item.querySelector("p");
-              if (!q || !a) return;
-              a.hidden = true;
-              q.style.cursor = "pointer";
-              q.addEventListener("click", function () {
-                a.hidden = !a.hidden;
+              if (!btn || !a) return;
+              btn.addEventListener("click", function () {
+                var open = a.hidden;
+                a.hidden = !open;
+                btn.setAttribute("aria-expanded", String(open));
+                var plus = btn.querySelector("span");
+                if (plus) plus.textContent = open ? "−" : "+";
               });
             });
           })();

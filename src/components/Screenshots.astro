@@ -1,25 +1,28 @@
 ---
+// WebP versions (~90% smaller than the PNG originals) — the carousel
+// is below the fold, so these load lazily with explicit dimensions
+// (no layout shift when they arrive).
 const shots = [
   {
-    src: "/screenshots/app-editor.png",
+    src: "/screenshots/app-editor.webp",
     alt: "Quran Studio editor",
     title: "Editor",
     text: "Pick verses, choose a reciter, style everything live.",
   },
   {
-    src: "/screenshots/app-about.png",
+    src: "/screenshots/app-about.webp",
     alt: "About dialog",
     title: "About",
     text: "Version info, updates and links — one click away.",
   },
   {
-    src: "/screenshots/app-settings.png",
+    src: "/screenshots/app-settings.webp",
     alt: "Download settings",
     title: "Export Settings",
     text: "MP4 (H.264), High 1080p, AAC audio — configured once.",
   },
   {
-    src: "/screenshots/app-full.png",
+    src: "/screenshots/app-full.webp",
     alt: "Quran Studio full editor",
     title: "Full View",
     text: "Selection, preview and styling in one window.",
@@ -38,23 +41,26 @@ const shots = [
           src={shots[0].src}
           alt={shots[0].alt}
           id="qs-shot-img"
-          loading="eager"
+          width="1280"
+          height="720"
+          loading="lazy"
+          decoding="async"
         />
         <div class="shots-caption">
           <strong id="qs-shot-title">{shots[0].title}</strong>
           <span id="qs-shot-text">{shots[0].text}</span>
         </div>
       </div>
-      <div class="shots-thumbs" role="tablist" aria-label="App screenshots">
+      <div class="shots-thumbs" aria-label="App screenshots">
         {shots.map((s, i) => (
           <button
             class={"shot-thumb" + (i === 0 ? " active" : "")}
             data-idx={i}
-            role="tab"
-            aria-selected={i === 0 ? "true" : "false"}
-            aria-label={s.title}
+            type="button"
+            aria-pressed={i === 0 ? "true" : "false"}
+            aria-label={"Show " + s.title + " screenshot"}
           >
-            <img src={s.src} alt={s.alt} loading="lazy" />
+            <img src={s.src} alt={s.alt} width="1280" height="720" loading="lazy" decoding="async" />
             <span>{s.title}</span>
           </button>
         ))}
@@ -90,7 +96,7 @@ const shots = [
       }, 180);
       thumbs.forEach(function (t, j) {
         t.classList.toggle("active", j === idx);
-        t.setAttribute("aria-selected", j === idx ? "true" : "false");
+        t.setAttribute("aria-pressed", j === idx ? "true" : "false");
       });
     }
 

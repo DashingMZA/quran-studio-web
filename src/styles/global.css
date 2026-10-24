@@ -1,3 +1,13 @@
+/* Marcellus (logo text only) — self-hosted so no render-blocking
+   Google Fonts request and no third-party font fetch on every page. */
+@font-face {
+  font-family: "Marcellus";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/marcellus.woff2") format("woff2");
+}
+
 :root {
   --bg: #0a0a0a;
   --bg-soft: #111111;
@@ -678,12 +688,29 @@ a {
 }
 .faq-item h2.faq-q {
   font-weight: 700;
-  cursor: pointer;
   font-size: 1.02rem;
   margin: 0;
 }
-.faq-item h2.faq-q:hover {
+/* Question is a real <button> so keyboard users can open answers too. */
+.faq-item h2.faq-q button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  text-align: left;
+}
+.faq-item h2.faq-q button:hover,
+.faq-item h2.faq-q button:focus-visible {
   color: var(--green);
+}
+.faq-item h2.faq-q button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
 }
 .faq-item p {
   color: var(--text-muted);

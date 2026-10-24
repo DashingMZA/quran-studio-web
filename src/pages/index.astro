@@ -13,17 +13,17 @@ import Footer from "../components/Footer.astro";
 import { homeSeo } from "../lib/seo";
 ---
 
-<Layout {...homeSeo()} />
-
-<Nav />
-<main>
-  <Hero />
-  <Screenshots />
-  <Features compact />
-  <HowItWorks />
-  <Comparison />
-  <FirstVideo />
-  <Download />
-  <Support />
-</main>
-<Footer />
+<Layout {...homeSeo()}>
+  <Nav />
+  <main>
+    <Hero />
+    <Screenshots />
+    <Features compact />
+    <HowItWorks />
+    <Comparison />
+    <FirstVideo />
+    <Download />
+    <Support />
+  </main>
+  <Footer />
+</Layout>

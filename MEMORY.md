@@ -160,3 +160,36 @@
 - Local build verified: sitemap mein 10 post URLs + 10 image entries,
   rss mein 22 items (10 blog + 11 pages + app), llms.txt mein 10
   blog links.
+
+## 2026-10-24 — PageSpeed fix batch (target: 99+ mobile + desktop)
+- Images: blog covers 2048px -> 1200px JPEG q82 progressive (har cover
+  ~73% chhota, 360-528 KB -> ~100-148 KB); screenshots PNG -> WebP
+  (app-editor 377 KB -> 39 KB, total ~90% kam) aur Screenshots.astro
+  ab .webp use karta hai. Sab images par width/height + decoding async;
+  blog index par pehli card eager/fetchpriority high, baqi lazy;
+  carousel main image ab lazy (below fold hai).
+- Fonts: Marcellus ab self-hosted hai (public/fonts/marcellus.woff2,
+  8.9 KB, @font-face font-display swap) — Google Fonts ka render-
+  blocking request khatam; live CSP font-src 'self' pehle Google font
+  ko block bhi kar raha tha.
+- CSP (vercel.json): AdSense pehle CSP se block ho raha tha (script-src
+  mein googlesyndication nahi tha) — ab script/connect/frame-src mein
+  pagead2.googlesyndication.com, *.googlesyndication.com aur
+  googleads.g.doubleclick.net allow hain. Cache: _astro 1 saal
+  immutable, icons/screenshots/social_media/fonts/blog jpgs 30 din.
+- A11y: FAQ questions ab asli <button> hain (aria-expanded/controls,
+  keyboard se khulte hain — pehle sirf mouse click kaam karta tha);
+  screenshot thumbs ka adhoora tab-role hataya (aria-pressed use hota
+  hai); download tabs ko aria-controls/labelledby mile; nav toggle ko
+  aria-controls mila.
+- Bug fix: index.astro mein Layout self-closing tha, is liye Nav/main/
+  Footer </html> ke BAAD render ho rahe the (invalid HTML) — ab sab
+  Layout ke andar hai.
+- AdSense script par fetchpriority="low" taake ads page content se
+  bandwidth na chheenen. NOTE: AdSense third-party script ke saath
+  mobile Performance 99 ki guarantee nahi di ja sakti — lab score
+  network/throttling par bhi depend karta hai; ye batch har woh
+  cheez fix karta hai jo code se fix ho sakti hai.
+- Local build verified: 24 pages, koi missing local asset nahi (icons
+  ke favicon files sirf local copy mein missing hain, remote par
+  maujood hain), har page ka exactly ek <html> root hai.
