@@ -245,3 +245,8 @@
 - Local build verify: / aur /download dono par 3 OS groups + version
   "1.0.1 • Released October 17, 2026" initial HTML mein maujood;
   "Loading latest version…" nahi raha.
+- Follow-up fix: pehla round-3 push script ki FILES list purani thi
+  (round 2 ki) — is liye 4 naye app-*-640.webp files remote par nahi
+  gaye. Doosri targeted push mein sirf ye 4 files + MEMORY.md bheji
+  gayi; remote tree diff se tasdeeq hui ke pehli push mein sirf 4
+  text files change hui thi (round-2 files ke blobs identical the).
