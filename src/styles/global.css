@@ -939,6 +939,10 @@ a.logo {
   display: block;
   width: 100%;
   height: auto;
+  /* Belt and braces next to the width/height attributes: the box height
+     must be reserved before the image loads, or the carousel growth
+     shifts the whole page (PSI flagged this image as unsized). */
+  aspect-ratio: 16 / 9;
   transition: opacity 0.18s ease;
 }
 .shots-caption {

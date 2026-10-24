@@ -221,3 +221,27 @@
   HSTS includeSubDomains, Trusted Types, Baseline) ke liye bari refactor
   chahiye (inline scripts/styles ko external karna) — wo agla step hai,
   is batch mein nahi.
+
+## CLS round 3 (2026-10-24, pushed <pending>)
+- PSI (round 2 live) phir bhi: mobile CLS 0.656, desktop 0.731 —
+  culprit poora <body> tha (0.654/0.731), hero CTA sirf 0.003. Matlab
+  page-level shift tha, kisi ek button ka nahi. Desktop par PSI ne
+  carousel ki main image (#qs-shot-img) ko "unsized" bhi flag kiya,
+  jabke us par width/height attributes the.
+- Asal fix: DownloadWidget ab BUILD time par server-render hota hai
+  (frontmatter mein GitHub releases API fetch, buttons initial HTML
+  mein). Client-side fetch sirf fallback hai (agar build-time fetch
+  fail ho — rate limit waghera). Visitor ka OS group sirf highlight
+  hota hai (class + "Your OS" badge + primary buttons) — order change
+  nahi hota, kyunki reorder phir se shift paida karta.
+  NOTE: is wajah se visitor ka OS group ab pehle number par nahi
+  aata, highlight hota hai (windows/macos/linux fixed order).
+- Screenshots carousel: main image lazy se eager + fetchpriority high
+  wapas (ye pehle eager thi, round 1 mein lazy ki thi), CSS mein
+  aspect-ratio: 16/9 add (attributes ke saath belt-and-braces), aur
+  4 naye 640x360 WebP variants (app-*-640.webp, 3.8-13 KB) + srcset —
+  mobile par 1280w file ki jagah 640w load hogi (PSI image-delivery
+  flag 35 KB ka tha).
+- Local build verify: / aur /download dono par 3 OS groups + version
+  "1.0.1 • Released October 17, 2026" initial HTML mein maujood;
+  "Loading latest version…" nahi raha.

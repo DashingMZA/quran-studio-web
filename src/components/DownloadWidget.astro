@@ -1,14 +1,131 @@
 ---
 import { GITHUB_RELEASES } from "../config/site";
 
-// Download widget: fetches the latest GitHub release and renders
-// download buttons for every platform (Windows / macOS / Linux).
-// The visitor's OS group is shown first and highlighted.
+// Download widget — download buttons for every platform (Windows / macOS / Linux).
+//
+// CLS fix: the buttons used to render only AFTER a client-side GitHub API
+// fetch, so the widget grew from ~80px to ~500px after load and pushed the
+// whole page down (homepage CLS was 0.65 mobile / 0.73 desktop). Now the
+// buttons render at BUILD time from the same API, so they are in the initial
+// HTML and nothing moves. If the build-time fetch fails (rate limit, offline
+// builder), the widget falls back to the old client-side fetch — the site
+// still works, it just shifts again for that deploy.
+// The visitor's OS group is only HIGHLIGHTED client-side (class + badge +
+// primary buttons); highlighting changes no sizes, so it cannot shift layout.
+
+const OWNER = "DashingMZA";
+const REPO = "quran-studio";
+
+type Asset = { url: string; os: "windows" | "macos" | "linux"; label: string };
+
+function classify(name: string): { os: Asset["os"]; label: string } | null {
+  const n = name.toLowerCase();
+  if (n.endsWith(".sig") || n === "latest.json") return null;
+  if (n.endsWith(".msi")) return { os: "windows", label: ".msi Installer" };
+  if (n.endsWith("-setup.exe") || n.endsWith(".exe"))
+    return { os: "windows", label: ".exe Installer" };
+  if (n.includes("aarch64") && n.endsWith(".dmg"))
+    return { os: "macos", label: ".dmg (Apple Silicon)" };
+  if (n.endsWith(".dmg")) return { os: "macos", label: ".dmg (Intel)" };
+  if (n.endsWith(".app.tar.gz")) return null; // updater-only, skip
+  if (n.endsWith(".appimage")) return { os: "linux", label: ".AppImage" };
+  if (n.endsWith(".deb")) return { os: "linux", label: ".deb Package" };
+  if (n.endsWith(".rpm")) return { os: "linux", label: ".rpm Package" };
+  return null;
+}
+
+const OS_SVG: Record<Asset["os"], string> = {
+  windows:
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5l8-1.1v7.6H3zM12 4.2L21 3v9H12zM3 12h8v7.6l-8-1.1zM12 12h9v9l-9-1.2z"/></svg>',
+  macos:
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.28l-.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>',
+  linux:
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4.5 5.8 4.5 10.5c0 2.9 1.5 5.5 3.7 7-.2.3-.3.7-.3 1.1 0 .8.7 1.5 1.5 1.5h5.2c.8 0 1.5-.7 1.5-1.5 0-.4-.1-.8-.3-1.1 2.2-1.5 3.7-4.1 3.7-7C19.5 5.8 16.4 2 12 2zM9.5 8.5c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5S8 10.8 8 10s.7-1.5 1.5-1.5zm5 0c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5zM12 13l-1.8 2.4h3.6L12 13z"/></svg>',
+};
+
+const OS_TITLE: Record<Asset["os"], string> = {
+  windows: "Windows",
+  macos: "macOS",
+  linux: "Linux",
+};
+
+let serverAssets: Asset[] = [];
+let serverVersion = "";
+try {
+  const r = await fetch(
+    `https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`,
+    { headers: { "User-Agent": "quran-studio-web" } }
+  );
+  if (r.ok) {
+    const release = await r.json();
+    const tag = (release.tag_name || "").replace(/^v/i, "");
+    let dateStr = "";
+    if (release.published_at) {
+      const d = new Date(release.published_at);
+      const months = ["January","February","March","April","May","June",
+        "July","August","September","October","November","December"];
+      const day = ("0" + d.getDate()).slice(-2);
+      dateStr = " • Released " + months[d.getMonth()] + " " + day + ", " + d.getFullYear();
+    }
+    serverVersion = "Latest version: " + tag + dateStr;
+    serverAssets = (release.assets || [])
+      .map((a: { name: string; browser_download_url: string }) => {
+        const info = classify(a.name);
+        return info ? { url: a.browser_download_url, os: info.os, label: info.label } : null;
+      })
+      .filter(Boolean);
+  }
+} catch {
+  // Build-time fetch failed — client-side fallback below takes over.
+}
+
+const serverGroups = (["windows", "macos", "linux"] as const)
+  .map((os) => ({ os, files: serverAssets.filter((a) => a.os === os) }))
+  .filter((g) => g.files.length > 0);
 ---
 
 <div id="qs-download" class="dl-widget">
-  <p class="dl-widget-version">Loading latest version…</p>
-  <div class="dl-widget-groups"></div>
+  {
+    serverGroups.length > 0 ? (
+      <>
+        <p class="dl-widget-version">{serverVersion}</p>
+        <div class="dl-widget-groups">
+          {serverGroups.map((g) => (
+            <div class="dl-os-group" data-os={g.os}>
+              <div class="dl-os-head">
+                <span>
+                  <Fragment set:html={OS_SVG[g.os]} /> {OS_TITLE[g.os]}
+                </span>
+              </div>
+              <div class="dl-os-btns">
+                {g.files.map((f) => (
+                  <div class="dl-card">
+                    <div class="dl-card-icon">
+                      <Fragment set:html={OS_SVG[g.os]} />
+                    </div>
+                    <div class="dl-card-title">{f.label}</div>
+                    <div class="dl-card-sub">{g.os}</div>
+                    <a
+                      href={f.url}
+                      class="btn btn-ghost"
+                      aria-label={`Download for ${OS_TITLE[g.os]} (${f.label})`}
+                    >
+                      Download
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    ) : (
+      <>
+        <p class="dl-widget-version">Loading latest version…</p>
+        <div class="dl-widget-groups"></div>
+      </>
+    )
+  }
   <p class="dl-widget-error" hidden></p>
   <noscript>
     <p style="text-align: center; margin-top: 1rem">
@@ -36,7 +153,30 @@ import { GITHUB_RELEASES } from "../config/site";
       return "unknown";
     }
 
-    // Map Tauri asset filenames -> { os, label }
+    // Server-rendered buttons already exist: only highlight the visitor's
+    // OS group. Highlighting changes colors/borders only, never sizes,
+    // so it cannot cause layout shift.
+    if (root.querySelectorAll(".dl-os-group").length > 0) {
+      var myOS = detectOS();
+      var group = root.querySelector('.dl-os-group[data-os="' + myOS + '"]');
+      if (group) {
+        group.classList.add("dl-os-yours");
+        var head = group.querySelector(".dl-os-head");
+        if (head && !head.querySelector(".dl-os-badge")) {
+          var badge = document.createElement("span");
+          badge.className = "dl-os-badge";
+          badge.textContent = "Your OS";
+          head.appendChild(badge);
+        }
+        group.querySelectorAll("a.btn").forEach(function (a) {
+          a.classList.remove("btn-ghost");
+          a.classList.add("btn-primary");
+        });
+      }
+      return;
+    }
+
+    // Fallback: build-time data was unavailable, fetch client-side (old path).
     function classify(name) {
       var n = name.toLowerCase();
       if (n.endsWith(".sig") || n === "latest.json") return null;
@@ -167,8 +307,6 @@ import { GITHUB_RELEASES } from "../config/site";
             a.href = f.url;
             a.className = "btn " + (os === myOS ? "btn-primary" : "btn-ghost");
             a.textContent = "Download";
-            // Every card said only "Download" with a different destination,
-            // which PageSpeed flagged as identical links, different purpose.
             a.setAttribute("aria-label", "Download for " + OS_META[os].title + " (" + f.label + ")");
             card.appendChild(a);
             btns.appendChild(card);

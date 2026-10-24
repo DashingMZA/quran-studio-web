@@ -1,10 +1,12 @@
 ---
-// WebP versions (~90% smaller than the PNG originals) — the carousel
-// is below the fold, so these load lazily with explicit dimensions
-// (no layout shift when they arrive).
+// WebP versions (~90% smaller than the PNG originals). The main image is
+// eager with explicit dimensions + aspect-ratio CSS (no layout shift when
+// it arrives) and a 640w variant so phones don't download the 1280w file
+// (PSI "Improve image delivery" was flagging the 1280w file at 362px wide).
 const shots = [
   {
     src: "/screenshots/app-editor.webp",
+    src640: "/screenshots/app-editor-640.webp",
     thumb: "/screenshots/app-editor-thumb.webp",
     alt: "Quran Studio editor",
     title: "Editor",
@@ -12,6 +14,7 @@ const shots = [
   },
   {
     src: "/screenshots/app-about.webp",
+    src640: "/screenshots/app-about-640.webp",
     thumb: "/screenshots/app-about-thumb.webp",
     alt: "About dialog",
     title: "About",
@@ -19,6 +22,7 @@ const shots = [
   },
   {
     src: "/screenshots/app-settings.webp",
+    src640: "/screenshots/app-settings-640.webp",
     thumb: "/screenshots/app-settings-thumb.webp",
     alt: "Download settings",
     title: "Export Settings",
@@ -26,6 +30,7 @@ const shots = [
   },
   {
     src: "/screenshots/app-full.webp",
+    src640: "/screenshots/app-full-640.webp",
     thumb: "/screenshots/app-full-thumb.webp",
     alt: "Quran Studio full editor",
     title: "Full View",
@@ -43,11 +48,14 @@ const shots = [
       <div class="shots-main">
         <img
           src={shots[0].src}
+          srcset={shots[0].src640 + " 640w, " + shots[0].src + " 1280w"}
+          sizes="(max-width: 640px) 640px, 1280px"
           alt={shots[0].alt}
           id="qs-shot-img"
           width="1280"
           height="720"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
           decoding="async"
         />
         <div class="shots-caption">
@@ -93,6 +101,7 @@ const shots = [
       img.style.opacity = "0";
       setTimeout(function () {
         img.src = s.src;
+        img.srcset = s.src640 + " 640w, " + s.src + " 1280w";
         img.alt = s.alt;
         titleEl.textContent = s.title;
         textEl.textContent = s.text;
