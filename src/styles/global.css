@@ -4,7 +4,14 @@
   font-family: "Marcellus";
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  /* CLS fix (round 4): PSI attributed the whole-page shift (0.65 mobile /
+     0.73 desktop) to this font. With `swap`, the logo text first renders
+     in Georgia, then re-renders in Marcellus — that swap was moving layout.
+     With `block`, the logo text stays invisible until the font arrives
+     (preloaded, 9 KB, so this is milliseconds) and then renders once —
+     no swap, no shift. Only the logo uses this font; everything else is
+     a system font and paints normally, so FCP/LCP are unaffected. */
+  font-display: block;
   src: url("/fonts/marcellus.woff2") format("woff2");
 }
 

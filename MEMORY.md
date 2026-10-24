@@ -250,3 +250,20 @@
   gaye. Doosri targeted push mein sirf ye 4 files + MEMORY.md bheji
   gayi; remote tree diff se tasdeeq hui ke pehli push mein sirf 4
   text files change hui thi (round-2 files ke blobs identical the).
+
+## CLS round 4 (2026-10-24, pushed <pending>)
+- Round 3 live hone ke baad bhi CLS BILKUL wahi raha: mobile 0.656,
+  desktop 0.731 — widget server-render aur carousel changes se koi
+  farq nahi para, is liye widget wajah nahi tha. PSI ne is baar body
+  shift ko /fonts/marcellus.woff2 se attribute kiya.
+- Marcellus sirf logo text (.logo-text, nav + footer) par use hota
+  hai; baqi sab system fonts hain. Fix: font-display swap -> block.
+  Logo text ab font aane tak invisible rehta hai (preload + 9 KB, to
+  milliseconds ki baat hai) phir ek baar final font mein render hota
+  hai — swap hi nahi hoga to shift bhi nahi. FCP/LCP par asar nahi
+  (hero text system font hai).
+- Side note: PSI ka image-delivery flag (1280w file, 35 KB) 640w
+  srcset ke baad bhi raha — wajah DPR hai: Moto G Power ka DPR
+  ~2.5 hai to 362px display ke liye ~905px chahiye, is liye browser
+  sahi taur par 1280w hi chun raha hai. Ye flag CSS size par based
+  hai, DPR ignore karta hai — is ke peeche bhagna bekaar hai.
