@@ -111,3 +111,10 @@
 - DownloadWidget: noscript fallback link to GitHub Releases for crawlers.
 - Privacy H1 + Terms brand suffix already in repo (audit saw stale live site).
 - "Additional Details" boilerplate not in repo — stale live deployment only.
+
+## 2026-10-24 — H1 missing fix (Site Scan notice)
+- /features, /how-it-works, /download pe H1 nahi tha (components sirf H2
+  dete the). Har page ke main mein sr-only H1 add kiya — design change
+  nahi, crawlers + screen readers ko H1 mil gaya.
+- Note: app.quranstudio.bond/ bhi list mein tha — wo web app hai, is repo
+  ka hissa nahi, isliye usko nahi chheda.
