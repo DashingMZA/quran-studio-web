@@ -49,19 +49,19 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
 // Must be an absolute URL. Empty = no image in link previews.
 export const SOCIAL_IMAGE = `${SITE_URL}/screenshots/quran-studio.png`;
 /** Google Analytics 4 measurement ID — paste your ID here (e.g. "G-XXXXXXXXXX"). Empty = no tracking. */
-export const GA_ID = "";
+export const GA_ID = "G-0X473QG59M";
 
 // ---------- ads.txt ----------
 // Paste your ads.txt content here (e.g. "google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0").
 // Empty = /ads.txt returns 404. One entry per line.
-export const ADS_TXT = ``;
+export const ADS_TXT = `google.com, pub-8198067510150459, DIRECT, f08c47fec0942fa0`;
 
 // ---------- Webmaster-tools verification ----------
 // Paste each code; empty = tag omitted.
 export const SITE_VERIFICATION = {
-  google: "",
-  bing: "",
-  pinterest: "",
+  google: "google-site-verification=3xxCnAb14rERW6P1vc4U-9lFc7d7O84Yo-jzhKKutTE",
+  bing: "226ACDBF2B991631F75F2B286ADFF9C0",
+  pinterest: "7ca3d9145deeae451ed68ef63f7ef5e5",
   yandex: "",
 };
 
