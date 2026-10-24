@@ -92,3 +92,8 @@
 - site.ts mein ADSENSE_CLIENT = "ca-pub-8198067510150459" add. Layout head mein
   AdSense script render hota hai jab ID set ho. Verification (google/bing/
   pinterest/yandex) pehle se site.ts + head mein tha.
+
+## 2026-10-24 — alt attributes fix (Site Scan warning)
+- Nav/Footer logos aur Screenshots thumbnails mein alt="" tha jo scanner flag
+  kar raha tha. Sab ko descriptive alt diya: logo = "Quran Studio logo",
+  thumbnails = shot ka alt text.
