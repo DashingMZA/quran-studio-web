@@ -59,7 +59,7 @@ export const ADS_TXT = `google.com, pub-8198067510150459, DIRECT, f08c47fec0942f
 // ---------- Webmaster-tools verification ----------
 // Paste each code; empty = tag omitted.
 export const SITE_VERIFICATION = {
-  google: "google-site-verification=3xxCnAb14rERW6P1vc4U-9lFc7d7O84Yo-jzhKKutTE",
+  google: "3xxCnAb14rERW6P1vc4U-9lFc7d7O84Yo-jzhKK",
   bing: "226ACDBF2B991631F75F2B286ADFF9C0",
   pinterest: "7ca3d9145deeae451ed68ef63f7ef5e5",
   yandex: "",
