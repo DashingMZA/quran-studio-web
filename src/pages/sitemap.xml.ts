@@ -6,6 +6,7 @@ const pages = [
   { path: "/download", changefreq: "weekly", priority: "0.9" },
   { path: "/features", changefreq: "monthly", priority: "0.8" },
   { path: "/how-it-works", changefreq: "monthly", priority: "0.8" },
+  { path: "/blog", changefreq: "weekly", priority: "0.8" },
   { path: "/faq", changefreq: "monthly", priority: "0.7" },
   { path: "/about", changefreq: "monthly", priority: "0.6" },
   { path: "/contact", changefreq: "yearly", priority: "0.5" },
@@ -17,16 +18,28 @@ const pages = [
 
 export async function GET() {
   const today = new Date().toISOString().slice(0, 10);
-  const posts = await getCollection("blog");
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
   const blogUrls = posts
-    .map(
-      (p) => `  <url>
+    .map((p) => {
+      // Real post date (not today) so crawlers see true freshness.
+      const lastmod = (p.data.updatedDate ?? p.data.pubDate)
+        .toISOString()
+        .slice(0, 10);
+      const image = p.data.heroImage
+        ? `
+    <image:image>
+      <image:loc>${SITE_URL}${p.data.heroImage}</image:loc>
+    </image:image>`
+        : "";
+      return `  <url>
     <loc>${SITE_URL}/blog/${p.id}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`
-    )
+    <priority>0.7</priority>${image}
+  </url>`;
+    })
     .join("\n");
   const urls = pages
     .map(
@@ -45,7 +58,7 @@ export async function GET() {
     <priority>0.9</priority>
   </url>`;
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls}
 ${appUrl}
 ${blogUrls}

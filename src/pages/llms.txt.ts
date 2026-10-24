@@ -7,8 +7,18 @@ import {
   GITHUB_RELEASES,
   GITHUB_LICENSE,
 } from "../config/site";
+import { getCollection } from "astro:content";
 
 export async function GET() {
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const blogList = posts
+    .map(
+      (p) =>
+        `- [${p.data.title}](${SITE_URL}/blog/${p.id}): ${p.data.description}`
+    )
+    .join("\n");
   const txt = `# ${SITE_NAME}
 
 > ${SITE_NAME} is a free, open-source app to create beautiful Quran recitation videos. Pick a reciter, style the verses, export in HD.
@@ -29,8 +39,16 @@ ${SITE_NAME} is a web and desktop-ready editor for creating Quran recitation vid
 - [How It Works](${SITE_URL}/how-it-works): From verses to video in four steps.
 - [Download](${SITE_URL}/download): Free download for Windows, macOS, and Linux.
 - [FAQ](${SITE_URL}/faq): Pricing, support, reciters, exports, offline use.
+- [Blog](${SITE_URL}/blog): Guides on making Quran recitation videos, Reels, fonts, backgrounds, and growing a Quran YouTube channel.
 - [About](${SITE_URL}/about): About ${SITE_NAME}.
 - [Contact](${SITE_URL}/contact): Bug reports and feature requests.
+- [Privacy Policy](${SITE_URL}/privacy-policy): How user data is handled.
+- [Terms of Use](${SITE_URL}/terms-of-use): Terms for using the site and software.
+- [Disclaimer](${SITE_URL}/disclaimer): Accuracy of Quranic content and third-party services.
+
+## Blog
+
+${blogList}
 `;
   return new Response(txt, {
     headers: { "Content-Type": "text/plain; charset=utf-8" },

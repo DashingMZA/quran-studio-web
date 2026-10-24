@@ -1,6 +1,13 @@
 import { SITE_URL, SITE_NAME, AUTHOR_NAME, APP_URL } from "../config/site";
 import { getCollection } from "astro:content";
 
+const escapeXml = (s: string) =>
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
 const pages = [
   { path: "/", title: "Home", description: "Create beautiful Quran recitation videos — free, open source." },
   { path: "/features", title: "Features", description: "Everything " + SITE_NAME + " can do: surah picker, famous reciters, auto-synced verses, beautiful typography, backgrounds, Urdu translation and HD MP4 export." },
@@ -16,19 +23,19 @@ const pages = [
 ];
 
 const appItem = `    <item>
-      <title>Web App — ${SITE_NAME}</title>
+      <title>Web App — ${escapeXml(SITE_NAME)}</title>
       <link>${APP_URL}</link>
-      <guid>${APP_URL}</guid>
-      <description>Use ${SITE_NAME} directly in your browser — no install needed.</description>
+      <guid isPermaLink="true">${APP_URL}</guid>
+      <description>Use ${escapeXml(SITE_NAME)} directly in your browser — no install needed.</description>
     </item>`;
 
-const items = pages
+const pageItems = pages
   .map(
     (p) => `    <item>
-      <title>${p.title} — ${SITE_NAME}</title>
+      <title>${escapeXml(p.title)} — ${escapeXml(SITE_NAME)}</title>
       <link>${SITE_URL}${p.path === "/" ? "" : p.path}</link>
-      <guid>${SITE_URL}${p.path === "/" ? "" : p.path}</guid>
-      <description>${p.description}</description>
+      <guid isPermaLink="true">${SITE_URL}${p.path === "/" ? "" : p.path}</guid>
+      <description>${escapeXml(p.description)}</description>
     </item>`
   )
   .join("\n") + "\n" + appItem;
@@ -38,24 +45,35 @@ export async function GET() {
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
   const blogItems = posts
-    .map(
-      (p) => `    <item>
-      <title>${p.data.title} — ${SITE_NAME} Blog</title>
+    .map((p) => {
+      const image = p.data.heroImage
+        ? `\n      <media:content url="${SITE_URL}${p.data.heroImage}" medium="image" />`
+        : "";
+      return `    <item>
+      <title>${escapeXml(p.data.title)} — ${escapeXml(SITE_NAME)} Blog</title>
       <link>${SITE_URL}/blog/${p.id}</link>
-      <guid>${SITE_URL}/blog/${p.id}</guid>
-      <description>${p.data.description}</description>
-      <pubDate>${p.data.pubDate.toUTCString()}</pubDate>
-    </item>`
-    )
+      <guid isPermaLink="true">${SITE_URL}/blog/${p.id}</guid>
+      <description>${escapeXml(p.data.description)}</description>
+      <pubDate>${p.data.pubDate.toUTCString()}</pubDate>${image}
+    </item>`;
+    })
     .join("\n");
-  const allItems = items + "\n" + blogItems;
+  // Blog first (newest first, with pubDates) so feed readers surface
+  // articles ahead of the dateless static pages.
+  const allItems = blogItems + "\n" + pageItems;
+  const lastBuildDate = posts[0]
+    ? posts[0].data.pubDate.toUTCString()
+    : new Date().toUTCString();
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>${SITE_NAME}</title>
+    <title>${escapeXml(SITE_NAME)}</title>
     <link>${SITE_URL}</link>
-    <description>Official site feed for ${SITE_NAME} — free, open-source Quran recitation video creator.</description>
+    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Official site feed for ${escapeXml(SITE_NAME)} — free, open-source Quran recitation video creator.</description>
     <language>en-us</language>
+    <lastBuildDate>${lastBuildDate}</lastBuildDate>
+    <ttl>60</ttl>
 ${allItems}
   </channel>
 </rss>`;

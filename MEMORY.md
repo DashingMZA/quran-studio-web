@@ -145,3 +145,18 @@
   ab .consent ek floating card popup hai (bottom-left corner, rounded,
   shadow, dark green bg). [hidden] par display: none rakha taake JS
   toggle kaam kare.
+
+## 2026-10-24 — sitemap / rss / llms.txt blog fix
+- sitemap.xml.ts: /blog index add kia (pehle missing tha); blog
+  lastmod ab asli pubDate/updatedDate hai (pehle sab par "today" tha);
+  har post ke cover ke liye image sitemap entry (image:loc).
+- rss.xml.ts: blog items pehle, newest-first, pubDate ke saath;
+  channel mein atom self-link, lastBuildDate, ttl; har post ka cover
+  media:content se; titles/descriptions XML-escaped (ampersand bug se
+  bachne ke liye).
+- llms.txt.ts: Blog section pehle bilkul missing tha — ab 10 posts ki
+  list (title + description + URL, newest-first) + Blog aur legal
+  pages ke links.
+- Local build verified: sitemap mein 10 post URLs + 10 image entries,
+  rss mein 22 items (10 blog + 11 pages + app), llms.txt mein 10
+  blog links.
