@@ -60,6 +60,17 @@ export const GA_ID = "G-0X473QG59M";
 // publisher number, or AdSense cannot verify the site.
 export const ADSENSE_CLIENT = "ca-pub-8198067510150459";
 
+// AdSense consent gating — keep this FALSE until AdSense approval is
+// complete. Google's verification crawler does not click the consent
+// banner, so it must see the AdSense code snippet in the page.
+// When TRUE: the AdSense script loads ONLY after the visitor accepts
+// cookies (same "qs-consent" choice as GA4, see CookieConsent.astro).
+// Visitors who decline (or have not chosen yet) never load AdSense —
+// no ad requests, no third-party weight, and PageSpeed measures the
+// pre-consent page. Flip to true after approval, then redeploy.
+// (Requires the consent banner, i.e. GA_ID set, to ever load ads.)
+export const ADSENSE_REQUIRE_CONSENT = false;
+
 // ---------- ads.txt ----------
 // Paste your ads.txt content here (e.g. "google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0").
 // Empty = /ads.txt returns 404. One entry per line.

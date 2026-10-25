@@ -1,5 +1,5 @@
 ---
-import { SITE_NAME, SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE, ADSENSE_CLIENT } from "../config/site";
+import { SITE_NAME, SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE, ADSENSE_CLIENT, ADSENSE_REQUIRE_CONSENT } from "../config/site";
 import StructuredData from "../lib/StructuredData.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 
@@ -96,14 +96,42 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
         Paste your Measurement ID as GA_ID in src/config/site.ts to enable. */}
 
     {/* Google AdSense (client ID lives in src/config/site.ts).
-        fetchpriority low: ads must not compete with page content for bandwidth. */}
-    {ADSENSE_CLIENT && (
+        fetchpriority low: ads must not compete with page content for bandwidth.
+        Consent gating (ADSENSE_REQUIRE_CONSENT in site.ts): when true, the
+        static script below is NOT rendered. Instead the loader script
+        injects it only after cookie consent — immediately if consent was
+        already accepted, or when CookieConsent.astro fires
+        "qs:consent-accepted" on Accept. Until approval, keep the setting
+        false so Google's verification crawler sees the snippet. */}
+    {ADSENSE_CLIENT && !ADSENSE_REQUIRE_CONSENT && (
       <script
         async
         fetchpriority="low"
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
         crossorigin="anonymous"
       />
+    )}
+    {ADSENSE_CLIENT && ADSENSE_REQUIRE_CONSENT && (
+      <script define:vars={{ ADSENSE_CLIENT }}>
+        (function () {
+          var SRC = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + ADSENSE_CLIENT;
+          var loaded = false;
+          function loadAds() {
+            if (loaded || document.querySelector('script[src="' + SRC + '"]')) return;
+            loaded = true;
+            var s = document.createElement("script");
+            s.async = true;
+            s.setAttribute("fetchpriority", "low");
+            s.src = SRC;
+            s.crossOrigin = "anonymous";
+            document.head.appendChild(s);
+          }
+          try {
+            if (localStorage.getItem("qs-consent") === "accepted") loadAds();
+          } catch (e) {}
+          window.addEventListener("qs:consent-accepted", loadAds);
+        })();
+      </script>
     )}
 
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />

@@ -312,3 +312,25 @@
   hai), kisi fixed layout bug ka nahi. Sab se bara shak ab bhi
   font timing par hai (slow 4G par font kabhi paint se pehle,
   kabhi baad mein pahunchta hai).
+
+## AdSense consent gating with site.ts setting (2026-10-24, pushed <pending>)
+- User ka faisla: pehle CSP fix se BP 100, approval ke baad
+  consent-gating. Is ke liye `ADSENSE_REQUIRE_CONSENT` setting
+  `src/config/site.ts` mein add hui — DEFAULT FALSE (abhi disable).
+- false (abhi): Layout head mein static adsbygoogle script pehle
+  jaisa hi load hota hai — AdSense verification crawler ko code
+  nazar aata hai, koi behavior change nahi.
+- true (approval ke baad enable karna): static script render nahi
+  hota; Layout ka loader script AdSense ko sirf tab inject karta
+  hai jab localStorage "qs-consent" === "accepted" ho (pehle se
+  accepted) ya CookieConsent ke Accept par "qs:consent-accepted"
+  event fire ho. Decline / no-choice par AdSense kabhi load nahi
+  hota — PSI (jo consent nahi karta) phir pre-consent page measure
+  karega: na console errors, na 227 KB third-party, na 150 KB
+  unused JS. Banner text bhi setting ke saath badalta hai (gated
+  mode mein "analytics and ads" likha aata hai).
+- Enable karne ka tareeqa: site.ts mein setting true karo +
+  redeploy (ya agent ko keh do, wo kar dega).
+- Dono states local build mein verify ki gayi hain: false par
+  static script maujood + GA-only banner; true par static script
+  ghaib + loader maujood + ads wala banner text.

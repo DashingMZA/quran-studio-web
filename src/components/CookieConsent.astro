@@ -1,16 +1,21 @@
 ---
 // Cookie consent banner (GDPR-style). Only renders when GA_ID is configured.
 // - No choice yet  -> banner with Accept / Decline
-// - Accepted       -> loads GA4 silently
-// - Declined       -> GA never loads
-import { GA_ID } from "../config/site";
+// - Accepted       -> loads GA4 silently (and AdSense, but only when
+//                     ADSENSE_REQUIRE_CONSENT is true in site.ts — the
+//                     loader in Layout.astro listens for the
+//                     "qs:consent-accepted" event fired below)
+// - Declined       -> GA (and gated AdSense) never loads
+import { GA_ID, ADSENSE_REQUIRE_CONSENT } from "../config/site";
 ---
 
 {GA_ID && (
   <>
     <div id="qs-consent" class="consent" hidden>
       <p>
-        We use cookies to understand how this site is used (Google Analytics).
+        {ADSENSE_REQUIRE_CONSENT
+          ? "We use cookies for analytics (Google Analytics) and ads (Google AdSense)."
+          : "We use cookies to understand how this site is used (Google Analytics)."}
         You can accept or decline — the site works the same either way.
         <a href="/privacy-policy">Privacy Policy</a>
       </p>
@@ -49,7 +54,11 @@ import { GA_ID } from "../config/site";
         function decide(value) {
           try { localStorage.setItem(KEY, value); } catch (e) {}
           banner.hidden = true;
-          if (value === "accepted") loadGA();
+          if (value === "accepted") {
+            loadGA();
+            // Let Layout.astro's AdSense loader (gated mode only) know.
+            window.dispatchEvent(new CustomEvent("qs:consent-accepted"));
+          }
         }
 
         document.getElementById("qs-consent-accept").addEventListener("click", function () { decide("accepted"); });
