@@ -290,3 +290,25 @@
   is liye ise chheda nahi.
 - Render-blocking: sirf apni 5.8 KB CSS, 150 ms — inline karne se
   caching khatam hogi, faida na hone ke barabar hai; chheda nahi.
+
+## Best Practices: CSP script-src fix (2026-10-24, pushed <pending>)
+- Pehla CSP fix (connect-src mein adtrafficquality) ke baad PSI ne
+  naya error dikhaya: AdSense ka show_ads_impl ab ep2 subdomain se
+  ek SCRIPT load karna chahta hai —
+  https://ep2.adtrafficquality.google/sodar/sodar2.js — jo script-src
+  mein block ho raha tha. Is se "Browser errors" + "Issues" wale 2
+  scored audits fail ho rahe the (BP 92 ki asal wajah; baqi 4
+  audits — CSP unsafe-inline, HSTS, Trusted Types, Baseline —
+  unscored/informational hain, points nahi kaat-te).
+- Fix: script-src mein bhi https://*.adtrafficquality.google add
+  kiya (ep1 connect + ep2 script dono wildcard se cover).
+  NOTE: ye sirf Google ke apne fraud-check script ko allow karta
+  hai, koi naya ad ya tracker nahi.
+- Mobile CLS note (17:00-17:01 runs): user ke run mein mobile 100
+  (CLS 0) aur mere ek minute baad wale run mein mobile 60
+  (CLS 0.656) — mobile CLS run-to-run flip ho raha hai, jabke
+  desktop stable 0 hai. Matlab shift kisi race ka nateeja hai
+  (koi cheez kabhi first paint se pehle, kabhi baad mein aati
+  hai), kisi fixed layout bug ka nahi. Sab se bara shak ab bhi
+  font timing par hai (slow 4G par font kabhi paint se pehle,
+  kabhi baad mein pahunchta hai).
