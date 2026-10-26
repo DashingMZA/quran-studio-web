@@ -34,7 +34,7 @@ export const SUPPORT_GUMROAD = "https://dashingmza.gumroad.com/coffee";
 // ---------- Social links (footer icons) ----------
 // Fill in your profile URLs; empty string = icon hidden.
 export const SOCIALS: { name: string; url: string; icon: string }[] = [
-  { name: "GitHub", url: GITHUB_REPO, icon: "/social_media/github.svg" },
+  { name: "GitHub", url: "https://github.com/DashingMZA", icon: "/social_media/github.svg" },
   { name: "X", url: "https://x.com/Dashing_ZB", icon: "/social_media/x.svg" },
   { name: "YouTube", url: "", icon: "/social_media/youtube.svg" },
   {name: "Instagram", url: "https://www.instagram.com/dashing.mza", icon: "/social_media/instagram.svg",},
