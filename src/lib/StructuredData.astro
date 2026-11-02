@@ -1,12 +1,9 @@
 ---
-import {SITE_URL, SITE_NAME, APP_URL, AUTHOR_NAME, AUTHOR_GITHUB, GITHUB_REPO, GITHUB_RELEASES, SOCIALS, SOCIAL_IMAGE, DEFAULT_SEO,} from "../config/site";
+import {SITE_URL, SITE_NAME, APP_URL, AUTHOR_NAME, AUTHOR_GITHUB, GITHUB_REPO, SOCIAL_IMAGE,} from "../config/site";
 
 const websiteId = `${SITE_URL}/#website`;
 const softwareId = `${SITE_URL}/#software`;
 const publisherId = `${SITE_URL}/#publisher`;
-
-// Social profiles from site.ts (empty URLs filtered out) — used for Person sameAs.
-const socialUrls = SOCIALS.map((s) => s.url).filter((u) => u);
 
 const schema = {
   "@context": "https://schema.org",
@@ -16,7 +13,7 @@ const schema = {
       "@id": websiteId,
       name: SITE_NAME,
       url: SITE_URL,
-      description: DEFAULT_SEO.description,
+      description: SITE_NAME + " is a free, open-source app to create beautiful Quran recitation videos. Pick a reciter, style the verses, export in HD.",
       inLanguage: "en",
       publisher: {
         "@id": publisherId,
@@ -32,18 +29,8 @@ const schema = {
       url: SITE_URL,
       description: "Create Quran recitation videos with customizable verse styling, reciter audio, and video export.",
       applicationCategory: "MultimediaApplication",
-      // Desktop app ships for all three (see /download), plus the web app.
-      operatingSystem: ["Windows", "macOS", "Linux"],
+      operatingSystem: "Windows",
       isAccessibleForFree: true,
-      downloadUrl: GITHUB_RELEASES,
-      featureList: [
-        "Quran recitation videos with reciter audio",
-        "Word-by-word verse highlighting synced to recitation",
-        "Verse styling, fonts and backgrounds",
-        "Translations alongside the Arabic text",
-        "HD MP4 export for YouTube, Instagram Reels and TikTok",
-      ],
-      sameAs: socialUrls,
       offers: {
         "@type": "Offer",
         price: 0,
@@ -65,7 +52,7 @@ const schema = {
       "@id": publisherId,
       name: AUTHOR_NAME,
       url: AUTHOR_GITHUB,
-      sameAs: [...new Set([AUTHOR_GITHUB, ...socialUrls])],
+      sameAs: [AUTHOR_GITHUB],
     },
   ],
 };

@@ -334,25 +334,3 @@
 - Dono states local build mein verify ki gayi hain: false par
   static script maujood + GA-only banner; true par static script
   ghaib + loader maujood + ads wala banner text.
-
-## Home-page SEO refresh (2026-11-02)
-- Research: competitor titles/descriptions (Quran reels / video maker apps)
-  + site content. Themes: Quran video maker, recitation videos, reels,
-  YouTube/Reels/TikTok, word-by-word highlight, reciter audio, translation,
-  HD MP4 export, free / open source / no account. All SEO text is English.
-- `src/config/site.ts` DEFAULT_SEO: new title
-  "Quran Studio — Free Quran Recitation Video Maker", new description
-  (157 chars), new `keywords` field (18 phrases). OG/Twitter titles and
-  descriptions rewritten to match. Canonical for index (via `src/lib/seo.ts`
-  homeSeo): canonicalUrl = canonicalUrlen = canonicalUrldefault =
-  https://quranstudio.bond; canonicalUrlur = https://quranstudio.bond/ur.
-- Images NOT changed: SOCIAL_IMAGE / ogimage / twitterimage keep the
-  repo's own public/screenshots files (quran-studio.png, quran-studio1.png,
-  quran-studio4.png — all 1920x1080, verified against the remote repo).
-- `src/layouts/Layout.astro`: renders keywords meta, hreflang ur link,
-  og:image:secure_url, twitter:card from prop, twitter:site/creator
-  (@Dashing_ZB). Sharing image still comes from SOCIAL_IMAGE, as before.
-- `src/lib/StructuredData.astro`: SoftwareApplication now lists
-  Windows/macOS/Linux, downloadUrl (GitHub releases), featureList and
-  sameAs; Person sameAs now covers all non-empty SOCIALS profiles.
-- Verified with `pnpm build` + built dist/index.html meta/JSON-LD check.
