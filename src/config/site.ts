@@ -51,7 +51,7 @@ export const SOCIAL_IMAGE = `${SITE_URL}/screenshots/quran-studio.png`;
 /** Google Analytics 4 measurement ID — paste your ID here (e.g. "G-XXXXXXXXXX"). Empty = no tracking. */
 export const GA_ID = "G-0X473QG59M";
 
-// ---------- Google AdSense ----------
+// ---------- Google AdSense -----------
 // Publisher client ID (looks like "ca-pub-XXXXXXXXXXXXXXXX") from
 // AdSense → Account → Settings → Account information. Empty = the
 // AdSense script is not loaded. BaseHead puts the script in the head
