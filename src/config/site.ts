@@ -47,8 +47,6 @@ export const SOCIALS: { name: string; url: string; icon: string }[] = [
 // ---------- Social preview image ----------
 // URL of the image shown when sharing links on Facebook/X.
 // Must be an absolute URL. Empty = no image in link previews.
-// Verified 2026-11-02 against the repo itself (public/screenshots):
-// quran-studio.png exists there at 1920x1080.
 export const SOCIAL_IMAGE = `${SITE_URL}/screenshots/quran-studio.png`;
 /** Google Analytics 4 measurement ID — paste your ID here (e.g. "G-XXXXXXXXXX"). Empty = no tracking. */
 export const GA_ID = "G-0X473QG59M";
@@ -87,49 +85,34 @@ export const SITE_VERIFICATION = {
   yandex: "",
 };
 
-// ---------- SEO defaults ----------
-// Home-page SEO, researched 2026-11-02 from competitor titles/descriptions
-// (Quran reels / video maker apps) and this site's own content: the search
-// themes are "Quran video maker", "Quran recitation videos", "Quran reels",
-// "YouTube / Reels / TikTok", "word-by-word highlight", "reciter audio",
-// "translation", "HD MP4 export", "free, open source, no account".
-// All text here is English. The Urdu version of the site (/ur) keeps its own
-// hreflang alternate (canonicalUrlur below); it is not English text.
+// ---------- SEO defaults (owner's data — do not change values) ----------
 /** Full SEO prop set expected by src/layouts/Layout.astro */
 export const DEFAULT_SEO = {
-  title: "Quran Studio — Free Quran Recitation Video Maker",
-  description:
-    "Create free Quran recitation videos: pick a reciter, style verses, add translation, and export HD MP4 for YouTube, Reels and TikTok. Open source, no account.",
-  keywords:
-    "Quran video maker, Quran recitation video maker, Quran reels maker, Quran videos for YouTube, Islamic video maker, Quran Shorts maker, Quran recitation videos, word by word Quran video, Quran video editor, free Quran video maker, open source Quran app, Quran MP4 export, Instagram Reels Quran, TikTok Quran videos, Quran translation video, HD Quran videos, desktop Quran video app, Quran Studio",
+  title: "Quran Studio — Create Beautiful Quran Recitation Videos",
+  description: "Quran Studio is a free, open-source app to create beautiful Quran recitation videos. Pick a reciter, style the verses, export in HD.",
   themeColor: "#0a0a0a",
   canonicalUrl: SITE_URL,
   canonicalUrlen: SITE_URL,
   canonicalUrlur: `${SITE_URL}/ur`,
   canonicalUrldefault: SITE_URL,
-  ogtitle: "Quran Studio — Free Quran Recitation Video Maker",
-  ogdescription:
-    "Quran Studio is a free, open-source desktop and web app to create Quran recitation videos. Pick a reciter, style the verses, add translation, and export HD MP4 for YouTube, Instagram Reels and TikTok — no account needed.",
+  ogtitle: "Quran Video Studio is an online tool to create and edit Quran videos.",
+  ogdescription: "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
   ogurl: SITE_URL,
   ogsitename: SITE_NAME,
   oglocale: "en_US",
   oglocalealternate: "ur_PK",
   ogtype: "website",
-  ogupdatedtime: "2026-11-02T00:00:00Z",
-  // Files in this repo's public/screenshots (verified 2026-11-02, 1920x1080).
+  ogupdatedtime: "2026-10-18T00:00:00Z",
   ogimage: `${SITE_URL}/screenshots/quran-studio1.png`,
-  ogimagealt: "Quran Studio — Free Quran Recitation Video Maker",
+  ogimagealt: "Quran Studio — Create Beautiful Quran Recitation Videos",
   ogimagetype: "image/png",
   ogimagewidth: "1920",
   ogimageheight: "1080",
   twittercard: "summary_large_image",
-  twittertitle: "Quran Studio — Free Quran Recitation Video Maker",
-  twitterdescription:
-    "Quran Studio is a free, open-source desktop and web app to create Quran recitation videos. Pick a reciter, style the verses, add translation, and export HD MP4 for YouTube, Instagram Reels and TikTok — no account needed.",
+  twittertitle: "Create and export professional Quran videos online",
+  twitterdescription: "Quran Studio is a web and desktop-ready editor for creating Quran recitation videos. It combines Quran text, translations, timed recitation audio, typography controls, and visual backgrounds into an exportable MP4 canvas workflow.",
   twitterimage: `${SITE_URL}/screenshots/quran-studio4.png`,
-  twitterimagealt: "Quran Studio — Free Quran Recitation Video Maker",
-  twittersite: "@Dashing_ZB",
-  twittercreator: "@Dashing_ZB",
+  twitterimagealt: "Quran Studio — Create Beautiful Quran Recitation Videos",
 };
 
 export type SeoProps = typeof DEFAULT_SEO;
