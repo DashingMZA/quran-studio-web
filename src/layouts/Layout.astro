@@ -6,9 +6,11 @@ import CookieConsent from "../components/CookieConsent.astro";
 interface Props {
   title: string;
   description: string;
+  keywords?: string;
   themeColor: string;
   canonicalUrl: string;
   canonicalUrlen: string;
+  canonicalUrlur?: string;
   canonicalUrldefault: string;
   ogtitle: string;
   ogdescription: string;
@@ -28,9 +30,11 @@ interface Props {
   twitterdescription: string;
   twitterimage: string;
   twitterimagealt: string;
+  twittersite?: string;
+  twittercreator?: string;
 }
 
-const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalUrldefault, ogtitle, ogdescription, ogurl, ogsitename, oglocale, ogtype, ogupdatedtime, ogimage, ogimagealt, ogimagetype, ogimagewidth, ogimageheight, oglocalealternate, twittercard, twittertitle, twitterdescription, twitterimage, twitterimagealt } = Astro.props;
+const { title, description, keywords, themeColor, canonicalUrl, canonicalUrlen, canonicalUrlur, canonicalUrldefault, ogtitle, ogdescription, ogurl, ogsitename, oglocale, ogtype, ogupdatedtime, ogimage, ogimagealt, ogimagetype, ogimagewidth, ogimageheight, oglocalealternate, twittercard, twittertitle, twitterdescription, twitterimage, twitterimagealt, twittersite, twittercreator } = Astro.props;
 ---
 
 <!doctype html>
@@ -40,12 +44,14 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
     <meta name="theme-color" content={themeColor} />
 
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrlen} />
+    {canonicalUrlur && <link rel="alternate" hreflang="ur" href={canonicalUrlur} />}
     <link rel="alternate" hreflang="x-default" href={canonicalUrldefault} />
 
     <meta property="og:title" content={ogtitle} />
@@ -59,6 +65,7 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
     {SOCIAL_IMAGE && (
       <>
         <meta property="og:image" content={SOCIAL_IMAGE} />
+        <meta property="og:image:secure_url" content={SOCIAL_IMAGE} />
         <meta property="og:image:alt" content={ogimagealt} />
         <meta property="og:image:type" content={ogimagetype} />
         <meta property="og:image:width" content={ogimagewidth} />
@@ -67,9 +74,11 @@ const { title, description, themeColor, canonicalUrl, canonicalUrlen, canonicalU
     )}
     <meta property="og:locale:alternate" content={oglocalealternate} />
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content={twittercard} />
     <meta name="twitter:title" content={twittertitle} />
     <meta name="twitter:description" content={twitterdescription} />
+    {twittersite && <meta name="twitter:site" content={twittersite} />}
+    {twittercreator && <meta name="twitter:creator" content={twittercreator} />}
     {SOCIAL_IMAGE && (
       <>
         <meta name="twitter:image" content={SOCIAL_IMAGE} />
